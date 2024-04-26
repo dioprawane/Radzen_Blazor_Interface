@@ -8,14 +8,17 @@
 
 <h3>Table DIALOGUE de la Base de données dialogue_gestion :</h3>
 
-<div>
-    <h4>Colonnes à afficher :</h4>
-    @foreach (var column in columnVisibility.Keys)
-    {
-        <input type="checkbox" @bind="columnVisibility[column]" @bind:event="oninput" />
-        @column<br />
-    }
-</div>
+<Collapsible>
+    <div class="row">
+        @foreach (var column in columnVisibility.Keys)
+        {
+            <div class="col-md-2">
+                <input type="checkbox" @bind="columnVisibility[column]" @bind:event="oninput" /> 
+                @column<br />
+            </div>
+        }
+    </div>
+</Collapsible>
 
 @if (dialogues == null || !columnVisibility.Any())
 {
@@ -55,9 +58,48 @@ else
                         @if (columnVisibility["Demande d'achat"]) { <td>@dialogue.DGDA</td> }
                         @if (columnVisibility["Axe national 1"]) { <td>@dialogue.DGAXENATIONAL1</td> }
                         @if (columnVisibility["Grand projet"]) { <td>@dialogue.DGGRANDPROJET</td> }
+                        @if (columnVisibility["Nom projet"]) { <td>@dialogue.DGNOMPROJET</td> }
+                        @if (columnVisibility["Statut projet G2PI"]) { <td>@dialogue.DGSTATUTPROJETG2PI</td> }
+                        @if (columnVisibility["Code initiative SDSI"]) { <td>@dialogue.DGCODEINITIATIVESDSI</td> }
+                        @if (columnVisibility["Objet initiative"]) { <td>@dialogue.DGOBJECTINITIATIVE</td> }
+                        @if (columnVisibility["Compte budgétaire"]) { <td>@dialogue.DGCOMPTESBUDGETAIRES</td> }
+                        @if (columnVisibility["Compte comptable"]) { <td>@dialogue.DGCOMPTESCOMPTABLES</td> }
+                        @if (columnVisibility["Portefeuille"]) { <td>@dialogue.DGPORTEFEUILLE</td> }
+                        @if (columnVisibility["Sous portefeuille"]) { <td>@dialogue.DGSOUSPORTEFEUILLE</td> }
+                        @if (columnVisibility["Caractéristique du besoin"]) { <td>@dialogue.DGCARACTERISTIQUEDUBESOIN</td> }
+                        @if (columnVisibility["Criticité"]) { <td>@dialogue.DGCRITICITE</td> }
+                        @if (columnVisibility["Budget initial demandé"]) { <td>@String.Format("{0:C}", dialogue.DGBUDGETINITIALDEMANDE)</td> }
+                        @if (columnVisibility["Budget DG1 demandé"]) { <td>@String.Format("{0:C}", dialogue.DGBUDGETDG1DEMANDE)</td> }
+                        @if (columnVisibility["Budget DG2 demandé"]) { <td>@String.Format("{0:C}", dialogue.DGBUDGETDG2DEMANDE)</td> }
+                        @if (columnVisibility["Budget DG3 demandé"]) { <td>@String.Format("{0:C}", dialogue.DGBUDGETDG3DEMANDE)</td> }
+                        @if (columnVisibility["Budget DG4 demandé"]) { <td>@String.Format("{0:C}", dialogue.DGBUDGETDG4DEMANDE)</td> }
+                        @if (columnVisibility["Demande report identifié"]) { <td>@dialogue.DGDEMANDEDEREPORTIDENTIFIE</td> }
+                        @if (columnVisibility["Plan budg BI janvier"]) { <td>@String.Format("{0:C}", dialogue.DGPLANBUDGBIJANVIER)</td> }
+                        @if (columnVisibility["Plan budg BR1 juillet"]) { <td>@String.Format("{0:C}", dialogue.DGPLANBUDGBR1JUILLET)</td> }
+                        @if (columnVisibility["Plan budg BR2 novembre"]) { <td>@String.Format("{0:C}", dialogue.DGPLANBUDGBR2NOVEMBRE)</td> }
+                        @if (columnVisibility["Numéro AB"]) { <td>@dialogue.DGNUMEROAB</td> }
+                        @if (columnVisibility["Numéro DB"]) { <td>@dialogue.DGNUMERODB</td> }
+                        @if (columnVisibility["BI autorisé"]) { <td>@String.Format("{0:C}", dialogue.DGBIAUTORISE)</td> }
+                        @if (columnVisibility["BR1 autorisé"]) { <td>@String.Format("{0:C}", dialogue.DGBR1AUTORISE)</td> }
+                        @if (columnVisibility["BR2 autorisé"]) { <td>@String.Format("{0:C}", dialogue.DGBR2AUTORISE)</td> }
+                        @if (columnVisibility["N° commande"]) { <td>@dialogue.DGNCOMMANDE</td> }
                         @if (columnVisibility["Date de Début"]) { <td>@dialogue.DGDATEDEDEBUT.ToShortDateString()</td> }
                         @if (columnVisibility["Date de Fin"]) { <td>@dialogue.DGDATEDEFIN.ToShortDateString()</td> }
                         @if (columnVisibility["Montant Commandé"]) { <td>@String.Format("{0:C}", dialogue.DGMONTANTCOMMANDE)</td> }
+                        @if (columnVisibility["N° engagement"]) { <td>@dialogue.DGNENGAGEMENT</td> }
+                        @if (columnVisibility["Montant engagé"]) { <td>@dialogue.DGMONTANTENGAGE</td> }
+                        @if (columnVisibility["Réalisé"]) { <td>@dialogue.DGREALISE</td> }
+                        @if (columnVisibility["GA486 année N+1"]) { <td>@dialogue.DGGA486ANNEEN1</td> }
+                        @if (columnVisibility["GA486 année N+2"]) { <td>@dialogue.DGGA486ANNEEN2</td> }
+                        @if (columnVisibility["GA486 année N+3"]) { <td>@dialogue.DGGA486ANNEEN3</td> }
+                        @if (columnVisibility["GA486 année N+4"]) { <td>@dialogue.DGGA486ANNEEN4</td> }
+                        @if (columnVisibility["Budg prev N+1"]) { <td>@dialogue.DGBUDGPREVN1</td> }
+                        @if (columnVisibility["Budg prev N+2"]) { <td>@dialogue.DGBUDGPREVN2</td> }
+                        @if (columnVisibility["Budg prev N+3"]) { <td>@dialogue.DGBUDGPREVN3</td> }
+                        @if (columnVisibility["Budg prev N+4"]) { <td>@dialogue.DGBUDGPREVN4</td> }
+                        @if (columnVisibility["Commentaires"]) { <td>@dialogue.DGCOMMENTAIRES</td> }
+                        @if (columnVisibility["Année"]) { <td>@dialogue.DGANNEE</td> }
+                        @if (columnVisibility["Série de données"]) { <td>@dialogue.DGSERIEDEDONNEES</td> }
                     </tr>
                 }
             </tbody>
@@ -80,10 +122,48 @@ else
         { "Demande d'achat", false },
         { "Axe national 1", false },
         { "Grand projet", false },
-        
+        { "Nom projet", false },
+        { "Statut projet G2PI", false },
+        { "Code initiative SDSI", false },
+        { "Objet initiative", false },
+        { "Compte budgétaire", false },
+        { "Compte comptable", false },
+        { "Portefeuille", false },
+        { "Sous portefeuille", false },
+        { "Caractéristique du besoin", false },
+        { "Criticité", false },
+        { "Budget initial demandé", false },
+        { "Budget DG1 demandé", false },
+        { "Budget DG2 demandé", false },
+        { "Budget DG3 demandé", false },
+        { "Budget DG4 demandé", false },
+        { "Demande report identifié", false },
+        { "Plan budg BI janvier", false },
+        { "Plan budg BR1 juillet", false },
+        { "Plan budg BR2 novembre", false },
+        { "Numéro AB", false },
+        { "Numéro DB", false },
+        { "BI autorisé", false },
+        { "BR1 autorisé", false },
+        { "BR2 autorisé", false },
+        { "N° commande", false },
         { "Date de Début", false },
         { "Date de Fin", false },
-        { "Montant Commandé", false }
+        { "Montant Commandé", false },
+        { "N° engagement", false },
+        { "Montant engagé", false },
+        { "Réalisé", false },
+        { "GA486 année N+1", false },
+        { "GA486 année N+2", false },
+        { "GA486 année N+3", false },
+        { "GA486 année N+4", false },
+        { "Budg prev N+1", false },
+        { "Budg prev N+2", false },
+        { "Budg prev N+3", false },
+        { "Budg prev N+4", false },
+        { "Commentaires", false },
+        { "Année", false },
+        { "Série de données", false }
     };
 
     protected override async Task OnInitializedAsync()

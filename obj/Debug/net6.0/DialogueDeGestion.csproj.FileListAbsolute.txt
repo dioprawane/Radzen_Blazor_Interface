@@ -42,3 +42,4 @@ C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\Micro
 C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\MySqlConnector.dll
 C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\obj\Debug\net6.0\DialogueDeGestion.sourcelink.json

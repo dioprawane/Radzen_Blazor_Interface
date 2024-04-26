@@ -1,0 +1,25 @@
+<div class="collapsible-container">
+    <button class="collapsible-header" @onclick="Toggle">
+        @ActionText
+    </button>
+    @if (!Collapsed)
+    {
+        <div class="collapsible-body">
+            @ChildContent
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public bool Collapsed { get; set; } = true;
+
+    string ActionText => Collapsed ? "Colonnes à afficher" : "Masquer les colonnes";
+
+    void Toggle()
+    {
+        Collapsed = !Collapsed;
+    }
+}
