@@ -1,0 +1,51 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DialogueDeGestion
+build_property.RootNamespace = DialogueDeGestion
+build_property.ProjectDir = C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/See.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/Select.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VsZWN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

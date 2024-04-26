@@ -1,0 +1,100 @@
+@page "/see"
+@inject DataService DataService
+@using DialogueDeGestion.Models
+
+<PageTitle>Vue des Dialogues</PageTitle>
+
+<h1>Dialogues</h1>
+
+<h3>Table DIALOGUE de la Base de données dialogue_gestion :</h3>
+
+<div>
+    <h4>Colonnes à afficher :</h4>
+    @foreach (var column in columnVisibility.Keys)
+    {
+        <input type="checkbox" @bind="columnVisibility[column]" @bind:event="oninput" />
+        @column<br />
+    }
+</div>
+
+@if (dialogues == null || !columnVisibility.Any())
+{
+    <p><em>Loading...</em></p>
+}
+else if (!dialogues.Any())
+{
+    <p>No dialogue found.</p>
+}
+else
+{
+    <div class="scrollable-table">
+        <table class="table">
+            <thead>
+                <tr>
+                @foreach (var column in columnVisibility)
+                {
+                    if (column.Value)
+                    {
+                        <th>@column.Key</th>
+                    }
+                }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dialogue in dialogues)
+                {
+                    <tr>
+                        @if (columnVisibility["Code"]) { <td>@dialogue.DCODE</td> }
+                        @if (columnVisibility["Macro Designation"]) { <td>@dialogue.DGMACRODESIGNATION</td> }
+                        @if (columnVisibility["Nature du Besoin"]) { <td>@dialogue.DGNATUREDUBESOIN</td> }
+                        @if (columnVisibility["Cadre d'achat"]) { <td>@dialogue.DGCADREDACHAT</td> }
+                        @if (columnVisibility["Fournisseur"]) { <td>@dialogue.DGFOURNISSEUR</td> }
+                        @if (columnVisibility["N° tiers"]) { <td>@dialogue.DGNTIERS</td> }
+                        @if (columnVisibility["Libellé du marché"]) { <td>@dialogue.DGLIBELLEDUMARCHE</td> }
+                        @if (columnVisibility["Masse budgétaire"]) { <td>@dialogue.DGMASSEBUDGETAIRE</td> }
+                        @if (columnVisibility["Demande d'achat"]) { <td>@dialogue.DGDA</td> }
+                        @if (columnVisibility["Axe national 1"]) { <td>@dialogue.DGAXENATIONAL1</td> }
+                        @if (columnVisibility["Grand projet"]) { <td>@dialogue.DGGRANDPROJET</td> }
+                        @if (columnVisibility["Date de Début"]) { <td>@dialogue.DGDATEDEDEBUT.ToShortDateString()</td> }
+                        @if (columnVisibility["Date de Fin"]) { <td>@dialogue.DGDATEDEFIN.ToShortDateString()</td> }
+                        @if (columnVisibility["Montant Commandé"]) { <td>@String.Format("{0:C}", dialogue.DGMONTANTCOMMANDE)</td> }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private List<Dialogue> dialogues;
+    private Dictionary<string, bool> columnVisibility = new Dictionary<string, bool>
+    {
+        { "Code", false },
+        { "Macro Designation", false },
+        { "Nature du Besoin", false },
+        { "Cadre d'achat", false },
+        { "Fournisseur", false },
+        { "N° tiers", false },
+        { "Libellé du marché", false },
+        { "Masse budgétaire", false },
+        { "Demande d'achat", false },
+        { "Axe national 1", false },
+        { "Grand projet", false },
+        
+        { "Date de Début", false },
+        { "Date de Fin", false },
+        { "Montant Commandé", false }
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            dialogues = await DataService.GetAllDialoguesAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+}

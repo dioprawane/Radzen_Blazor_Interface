@@ -1,0 +1,169 @@
+@page "/select"
+@inject DataService DataService
+@using DialogueDeGestion.Models
+
+<PageTitle>Vue des Dialogues</PageTitle>
+
+<h1>Dialogues</h1>
+
+<h3>Table DIALOGUE de la Base de données dialogue_gestion :</h3>
+
+<label for="filter">Filtrer par série de données :</label>
+<input @bind="filterText" @bind:event="oninput" id="filter" class="form-control" placeholder="Entrez une série de données" />
+
+
+@if (dialogues == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!dialogues.Any())
+{
+    <p>No dialogue found.</p>
+}
+else
+{
+    <div class="scrollable-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Macro Designation</th>
+                    <th>Nature du Besoin</th>
+                    <th>Cadre d'achat</th>
+                    <th>Founisseur</th>
+                    <th>N° tiers</th>
+                    <th>Libellé du marché</th>
+                    <th>Masse budgétaire</th>
+                    <th>Demande d'achat</th>
+                    <th>Axe national 1</th>
+                    <th>Grand projet</th>
+                    <th>Nom projet</th>
+                    <th>Statut projet G2PI</th>
+                    <th>Code initiative SDSI</th>
+                    <th>Objet initiative</th>
+                    <th>Compte budgétaire</th>
+                    <th>Compte comptable</th>
+                    <th>Portefeuille</th>
+                    <th>Sous portefeuille</th>
+                    <th>Caractéristique du besoin</th>
+                    <th>Criticité</th>
+                    <th>Budget initial demandé</th>
+                    <th>Budget DG1 demandé</th>
+                    <th>Budget DG2 demandé</th>
+                    <th>Budget DG3 demandé</th>
+                    <th>Budget DG4 demandé</th>
+                    <th>Demande report identifié</th>
+                    <th>Plan budg BI janvier</th>
+                    <th>Plan budg BR1 juillet</th>
+                    <th>Plan budg BR2 novembre</th>
+                    <th>Numéro AB</th>
+                    <th>Numéro DB</th>
+                    <th>BI autorisé</th>
+                    <th>BR1 autorisé</th>
+                    <th>BR2 autorisé</th>
+                    <th>N° commande</th>
+                    <th>Date de Début</th>
+                    <th>Date de Fin</th>
+                    <th>Montant Commandé</th>
+                    <th>N° engagement</th>
+                    <th>Montant engagé</th>
+                    <th>Réalisé</th>
+                    <th>GA486 année N+1</th>
+                    <th>GA486 année N+2</th>
+                    <th>GA486 année N+3</th>
+                    <th>GA486 année N+4</th>
+                    <th>Budg prev N+1</th>
+                    <th>Budg prev N+2</th>
+                    <th>Budg prev N+3</th>
+                    <th>Budg prev N+4</th>
+                    <th>Commentaires</th>
+                    <th>Année</th>
+                    <th>Série de données</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dialogue in FilteredDialogues)
+                {
+                    <tr>
+                        <td>@dialogue.DCODE</td>
+                        <td>@dialogue.DGMACRODESIGNATION</td>
+                        <td>@dialogue.DGNATUREDUBESOIN</td>
+                        <td>@dialogue.DGCADREDACHAT</td>
+                        <td>@dialogue.DGFOURNISSEUR</td>
+                        <td>@dialogue.DGNTIERS</td>
+                        <td>@dialogue.DGLIBELLEDUMARCHE</td>
+                        <td>@dialogue.DGMASSEBUDGETAIRE</td>
+                        <td>@dialogue.DGDA</td>
+                        <td>@dialogue.DGAXENATIONAL1</td>
+                        <td>@dialogue.DGGRANDPROJET</td>
+                        <td>@dialogue.DGNOMPROJET</td>
+                        <td>@dialogue.DGSTATUTPROJETG2PI</td>
+                        <td>@dialogue.DGCODEINITIATIVESDSI</td>
+                        <td>@dialogue.DGOBJECTINITIATIVE</td>
+                        <td>@dialogue.DGCOMPTESBUDGETAIRES</td>
+                        <td>@dialogue.DGCOMPTESCOMPTABLES</td>
+                        <td>@dialogue.DGPORTEFEUILLE</td>
+                        <td>@dialogue.DGSOUSPORTEFEUILLE</td>
+                        <td>@dialogue.DGCARACTERISTIQUEDUBESOIN</td>
+                        <td>@dialogue.DGCRITICITE</td>
+                        <td>@dialogue.DGBUDGETINITIALDEMANDE</td>
+                        <td>@dialogue.DGBUDGETDG1DEMANDE</td>
+                        <td>@dialogue.DGBUDGETDG2DEMANDE</td>
+                        <td>@dialogue.DGBUDGETDG3DEMANDE</td>
+                        <td>@dialogue.DGBUDGETDG4DEMANDE</td>
+                        <td>@dialogue.DGDEMANDEDEREPORTIDENTIFIE</td>
+                        <td>@dialogue.DGPLANBUDGBIJANVIER</td>
+                        <td>@dialogue.DGPLANBUDGBR1JUILLET</td>
+                        <td>@dialogue.DGPLANBUDGBR2NOVEMBRE</td>
+                        <td>@dialogue.DGNUMEROAB</td>
+                        <td>@dialogue.DGNUMERODB</td>
+                        <td>@dialogue.DGBIAUTORISE</td>
+                        <td>@dialogue.DGBR1AUTORISE</td>
+                        <td>@dialogue.DGBR2AUTORISE</td>
+                        <td>@dialogue.DGNCOMMANDE</td>
+                        <td>@dialogue.DGDATEDEDEBUT.ToShortDateString()</td>
+                        <td>@dialogue.DGDATEDEFIN.ToShortDateString()</td>
+                        <td>@String.Format("{0:C}", dialogue.DGMONTANTCOMMANDE)</td>
+                        <td>@dialogue.DGNENGAGEMENT</td>
+                        <td>@dialogue.DGMONTANTENGAGE</td>
+                        <td>@dialogue.DGREALISE</td>
+                        <td>@dialogue.DGGA486ANNEEN1</td>
+                        <td>@dialogue.DGGA486ANNEEN2</td>
+                        <td>@dialogue.DGGA486ANNEEN3</td>
+                        <td>@dialogue.DGGA486ANNEEN4</td>
+                        <td>@dialogue.DGBUDGPREVN1</td>
+                        <td>@dialogue.DGBUDGPREVN2</td>
+                        <td>@dialogue.DGBUDGPREVN3</td>
+                        <td>@dialogue.DGBUDGPREVN4</td>
+                        <td>@dialogue.DGCOMMENTAIRES</td>
+                        <td>@dialogue.DGANNEE</td>
+                        <td>@dialogue.DGSERIEDEDONNEES</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+     </div>   
+}
+
+
+@code {
+    private List<Dialogue> dialogues;
+    private List<Dialogue> FilteredDialogues => dialogues?.Where(d => FilterDialogue(d)).ToList() ?? new List<Dialogue>();
+    private string filterText = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            dialogues = await DataService.GetAllDialoguesAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+    private bool FilterDialogue(Dialogue dialogue)
+    {
+        return string.IsNullOrEmpty(filterText) || dialogue.DGSERIEDEDONNEES.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+    }
+}
