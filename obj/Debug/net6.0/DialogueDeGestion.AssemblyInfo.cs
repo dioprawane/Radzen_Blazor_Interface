@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DialogueDeGestion")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fc8ddab75b09318190d1cb22884daf4ca377edc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db5fac45ef0ea7be5e1d042f42be77bc944fd719")]
 [assembly: System.Reflection.AssemblyProductAttribute("DialogueDeGestion")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DialogueDeGestion")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
