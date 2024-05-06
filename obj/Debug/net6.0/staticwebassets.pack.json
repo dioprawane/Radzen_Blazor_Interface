@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Id": "C:\\Users\\ac75008612\\OneDrive - RECOUV\\VsCode\\InterfaceBDD\\wwwroot\\css\\my-styles.css",
+      "PackagePath": "staticwebassets\\css\\my-styles.css"
+    },
+    {
       "Id": "C:\\Users\\ac75008612\\OneDrive - RECOUV\\VsCode\\InterfaceBDD\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

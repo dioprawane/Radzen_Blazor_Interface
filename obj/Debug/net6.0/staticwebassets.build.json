@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "u8MBtENErAEWXQzKaspyVSQ/kXNymHXj6CrKrDokEoI=",
+  "Hash": "sgQI7X7c2O0z/NvY+xkB+U6BbdCYoF/yK0zOz4wHd/o=",
   "Source": "DialogueDeGestion",
   "BasePath": "_content/DialogueDeGestion",
   "Mode": "Default",
@@ -984,6 +984,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "C:\\Users\\ac75008612\\OneDrive - RECOUV\\VsCode\\InterfaceBDD\\wwwroot\\css\\my-styles.css",
+      "SourceId": "DialogueDeGestion",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ac75008612\\OneDrive - RECOUV\\VsCode\\InterfaceBDD\\wwwroot\\",
+      "BasePath": "_content/DialogueDeGestion",
+      "RelativePath": "css/my-styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\my-styles.css"
     },
     {
       "Identity": "C:\\Users\\ac75008612\\OneDrive - RECOUV\\VsCode\\InterfaceBDD\\wwwroot\\css\\site.css",

@@ -1,0 +1,680 @@
+@page "/edit-line/{Code:int}"
+@inject DataService DataService
+@inject NavigationManager NavigationManager
+@using DialogueDeGestion.Models
+
+<PageTitle>Modifier le Dialogue</PageTitle>
+
+<h1>Modifier le Dialogue</h1>
+
+@if (selectedDialogue == null || temporaryDialogue == null)
+{
+    <p><em>Chargement...</em></p>
+}
+else
+{
+    <div class="row">
+        <!-- Colonne des champs modifiables -->
+        <div class="col-md-6">
+            <h3>Modifier le Dialogue - Code : @selectedDialogue.DCODE</h3>
+            <div>
+                <label>Code :</label>
+                <input @bind="temporaryDialogue.DCODE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Macro Designation :</label>
+                <input @bind="temporaryDialogue.DGMACRODESIGNATION" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Nature du Besoin :</label>
+                <input @bind="temporaryDialogue.DGNATUREDUBESOIN" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Cadre d'achat :</label>
+                <input @bind="temporaryDialogue.DGCADREDACHAT" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Fournisseur :</label>
+                <input @bind="temporaryDialogue.DGFOURNISSEUR" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>N° tiers :</label>
+                <input @bind="temporaryDialogue.DGNTIERS" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Libellé du marché :</label>
+                <input @bind="temporaryDialogue.DGLIBELLEDUMARCHE" class="form-control modifiable-value" readonly />
+            </div>
+            <div>
+                <label>Masse budgétaire :</label>
+                <input @bind="temporaryDialogue.DGMASSEBUDGETAIRE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Demande d'achat :</label>
+                <input @bind="temporaryDialogue.DGDA" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Axe national 1 :</label>
+                <input @bind="temporaryDialogue.DGAXENATIONAL1" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Grand projet :</label>
+                <input @bind="temporaryDialogue.DGGRANDPROJET" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Nom projet :</label>
+                <input @bind="temporaryDialogue.DGNOMPROJET" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Statut projet G2PI :</label>
+                <input @bind="temporaryDialogue.DGSTATUTPROJETG2PI" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Code initiative SDSI :</label>
+                <input @bind="temporaryDialogue.DGCODEINITIATIVESDSI" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Objet initiative :</label>
+                <input @bind="temporaryDialogue.DGOBJECTINITIATIVE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Compte budgétaire :</label>
+                <input @bind="temporaryDialogue.DGCOMPTESBUDGETAIRES" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Compte comptable :</label>
+                <input @bind="temporaryDialogue.DGCOMPTESCOMPTABLES" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Portefeuille :</label>
+                <input @bind="temporaryDialogue.DGPORTEFEUILLE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Sous portefeuille :</label>
+                <input @bind="temporaryDialogue.DGSOUSPORTEFEUILLE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Caractéristique du besoin :</label>
+                <input @bind="temporaryDialogue.DGCARACTERISTIQUEDUBESOIN" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Criticité :</label>
+                <input @bind="temporaryDialogue.DGCRITICITE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budget initial demandé :</label>
+                <input @bind="temporaryDialogue.DGBUDGETINITIALDEMANDE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budget DG1 demandé :</label>
+                <input @bind="temporaryDialogue.DGBUDGETDG1DEMANDE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budget DG2 demandé :</label>
+                <input @bind="temporaryDialogue.DGBUDGETDG2DEMANDE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budget DG3 demandé :</label>
+                <input @bind="temporaryDialogue.DGBUDGETDG3DEMANDE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budget DG4 demandé :</label>
+                <input @bind="temporaryDialogue.DGBUDGETDG4DEMANDE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Demande report identifié :</label>
+                <input @bind="temporaryDialogue.DGDEMANDEDEREPORTIDENTIFIE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Plan budg BI janvier :</label>
+                <input @bind="temporaryDialogue.DGPLANBUDGBIJANVIER" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Plan budg BR1 juillet :</label>
+                <input @bind="temporaryDialogue.DGPLANBUDGBR1JUILLET" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Plan budg BR2 novembre :</label>
+                <input @bind="temporaryDialogue.DGPLANBUDGBR2NOVEMBRE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Numéro AB :</label>
+                <input @bind="temporaryDialogue.DGNUMEROAB" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Numéro DB :</label>
+                <input @bind="temporaryDialogue.DGNUMERODB" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>BI autorisé :</label>
+                <input @bind="temporaryDialogue.DGBIAUTORISE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>BR1 autorisé :</label>
+                <input @bind="temporaryDialogue.DGBR1AUTORISE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>BR2 autorisé :</label>
+                <input @bind="temporaryDialogue.DGBR2AUTORISE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>N° commande :</label>
+                <input @bind="temporaryDialogue.DGNCOMMANDE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Date de Début :</label>
+                <input @bind="temporaryDialogue.DGDATEDEDEBUT" type="date" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Date de Fin :</label>
+                <input @bind="temporaryDialogue.DGDATEDEFIN" type="date" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Montant Commandé :</label>
+                <input @bind="temporaryDialogue.DGMONTANTCOMMANDE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>N° engagement :</label>
+                <input @bind="temporaryDialogue.DGNENGAGEMENT" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Montant engagé :</label>
+                <input @bind="temporaryDialogue.DGMONTANTENGAGE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Réalisé :</label>
+                <input @bind="temporaryDialogue.DGREALISE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>GA486 année N+1 :</label>
+                <input @bind="temporaryDialogue.DGGA486ANNEEN1" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>GA486 année N+2 :</label>
+                <input @bind="temporaryDialogue.DGGA486ANNEEN2" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>GA486 année N+3 :</label>
+                <input @bind="temporaryDialogue.DGGA486ANNEEN3" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>GA486 année N+4 :</label>
+                <input @bind="temporaryDialogue.DGGA486ANNEEN4" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budg prev N+1 :</label>
+                <input @bind="temporaryDialogue.DGBUDGPREVN1" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budg prev N+2 :</label>
+                <input @bind="temporaryDialogue.DGBUDGPREVN2" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budg prev N+3 :</label>
+                <input @bind="temporaryDialogue.DGBUDGPREVN3" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Budg prev N+4 :</label>
+                <input @bind="temporaryDialogue.DGBUDGPREVN4" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Commentaires :</label>
+                <input @bind="temporaryDialogue.DGCOMMENTAIRES" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Année :</label>
+                <input @bind="temporaryDialogue.DGANNEE" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <label>Série de données :</label>
+                <input @bind="temporaryDialogue.DGSERIEDEDONNEES" class="form-control modifiable-value" />
+            </div>
+            <div>
+                <button @onclick="SaveDialogue" class="btn btn-success">Save</button>
+                <button @onclick="CancelEdit" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Colonne des données sélectionnées -->
+        <div class="col-md-6">
+            <h3>Données du Dialogue Sélectionné</h3>
+            <div>
+                <label>Code :</label>
+                <input @bind="selectedDialogue.DCODE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Macro Designation :</label>
+                <input @bind="selectedDialogue.DGMACRODESIGNATION" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Nature du Besoin :</label>
+                <input @bind="selectedDialogue.DGNATUREDUBESOIN" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Cadre d'achat :</label>
+                <input @bind="selectedDialogue.DGCADREDACHAT" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Fournisseur :</label>
+                <input @bind="selectedDialogue.DGFOURNISSEUR" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>N° tiers :</label>
+                <input @bind="selectedDialogue.DGNTIERS" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Libellé du marché :</label>
+                <input @bind="selectedDialogue.DGLIBELLEDUMARCHE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Masse budgétaire :</label>
+                <input @bind="selectedDialogue.DGMASSEBUDGETAIRE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Demande d'achat :</label>
+                <input @bind="selectedDialogue.DGDA" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Axe national 1 :</label>
+                <input @bind="selectedDialogue.DGAXENATIONAL1" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Grand projet :</label>
+                <input @bind="selectedDialogue.DGGRANDPROJET" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Nom projet :</label>
+                <input @bind="selectedDialogue.DGNOMPROJET" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Statut projet G2PI :</label>
+                <input @bind="selectedDialogue.DGSTATUTPROJETG2PI" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Code initiative SDSI :</label>
+                <input @bind="selectedDialogue.DGCODEINITIATIVESDSI" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Objet initiative :</label>
+                <input @bind="selectedDialogue.DGOBJECTINITIATIVE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Compte budgétaire :</label>
+                <input @bind="selectedDialogue.DGCOMPTESBUDGETAIRES" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Compte comptable :</label>
+                <input @bind="selectedDialogue.DGCOMPTESCOMPTABLES" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Portefeuille :</label>
+                <input @bind="selectedDialogue.DGPORTEFEUILLE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Sous portefeuille :</label>
+                <input @bind="selectedDialogue.DGSOUSPORTEFEUILLE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Caractéristique du besoin :</label>
+                <input @bind="selectedDialogue.DGCARACTERISTIQUEDUBESOIN" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Criticité :</label>
+                <input @bind="selectedDialogue.DGCRITICITE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budget initial demandé :</label>
+                <input @bind="selectedDialogue.DGBUDGETINITIALDEMANDE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budget DG1 demandé :</label>
+                <input @bind="selectedDialogue.DGBUDGETDG1DEMANDE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budget DG2 demandé :</label>
+                <input @bind="selectedDialogue.DGBUDGETDG2DEMANDE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budget DG3 demandé :</label>
+                <input @bind="selectedDialogue.DGBUDGETDG3DEMANDE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budget DG4 demandé :</label>
+                <input @bind="selectedDialogue.DGBUDGETDG4DEMANDE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Demande report identifié :</label>
+                <input @bind="selectedDialogue.DGDEMANDEDEREPORTIDENTIFIE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Plan budg BI janvier :</label>
+                <input @bind="selectedDialogue.DGPLANBUDGBIJANVIER" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Plan budg BR1 juillet :</label>
+                <input @bind="selectedDialogue.DGPLANBUDGBR1JUILLET" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Plan budg BR2 novembre :</label>
+                <input @bind="selectedDialogue.DGPLANBUDGBR2NOVEMBRE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Numéro AB :</label>
+                <input @bind="selectedDialogue.DGNUMEROAB" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Numéro DB :</label>
+                <input @bind="selectedDialogue.DGNUMERODB" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>BI autorisé :</label>
+                <input @bind="selectedDialogue.DGBIAUTORISE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>BR1 autorisé :</label>
+                <input @bind="selectedDialogue.DGBR1AUTORISE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>BR2 autorisé :</label>
+                <input @bind="selectedDialogue.DGBR2AUTORISE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>N° commande :</label>
+                <input @bind="selectedDialogue.DGNCOMMANDE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Date de Début :</label>
+                <input @bind="selectedDialogue.DGDATEDEDEBUT" type="date" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Date de Fin :</label>
+                <input @bind="selectedDialogue.DGDATEDEFIN" type="date" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Montant Commandé :</label>
+                <input @bind="selectedDialogue.DGMONTANTCOMMANDE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>N° engagement :</label>
+                <input @bind="selectedDialogue.DGNENGAGEMENT" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Montant engagé :</label>
+                <input @bind="selectedDialogue.DGMONTANTENGAGE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Réalisé :</label>
+                <input @bind="selectedDialogue.DGREALISE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>GA486 année N+1 :</label>
+                <input @bind="selectedDialogue.DGGA486ANNEEN1" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>GA486 année N+2 :</label>
+                <input @bind="selectedDialogue.DGGA486ANNEEN2" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>GA486 année N+3 :</label>
+                <input @bind="selectedDialogue.DGGA486ANNEEN3" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>GA486 année N+4 :</label>
+                <input @bind="selectedDialogue.DGGA486ANNEEN4" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budg prev N+1 :</label>
+                <input @bind="selectedDialogue.DGBUDGPREVN1" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budg prev N+2 :</label>
+                <input @bind="selectedDialogue.DGBUDGPREVN2" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budg prev N+3 :</label>
+                <input @bind="selectedDialogue.DGBUDGPREVN3" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Budg prev N+4 :</label>
+                <input @bind="selectedDialogue.DGBUDGPREVN4" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Commentaires :</label>
+                <input @bind="selectedDialogue.DGCOMMENTAIRES" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Année :</label>
+                <input @bind="selectedDialogue.DGANNEE" class="form-control read-only-value" readonly />
+            </div>
+            <div>
+                <label>Série de données :</label>
+                <input @bind="selectedDialogue.DGSERIEDEDONNEES" class="form-control read-only-value" readonly />
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int Code { get; set; }
+
+    private Dialogue selectedDialogue;
+    private Dialogue temporaryDialogue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        /*try
+        {
+            selectedDialogue = await DataService.GetDialogueByCodeAsync(Code);
+            temporaryDialogue = selectedDialogue;
+        }*/
+        try
+        {
+            selectedDialogue = await DataService.GetDialogueByCodeAsync(Code);
+            temporaryDialogue = new Dialogue
+            {
+                DCODE = selectedDialogue.DCODE,
+                DGMACRODESIGNATION = selectedDialogue.DGMACRODESIGNATION,
+                DGNATUREDUBESOIN = selectedDialogue.DGNATUREDUBESOIN,
+                DGCADREDACHAT = selectedDialogue.DGCADREDACHAT,
+                DGFOURNISSEUR = selectedDialogue.DGFOURNISSEUR,
+                DGNTIERS = selectedDialogue.DGNTIERS,
+                DGLIBELLEDUMARCHE = selectedDialogue.DGLIBELLEDUMARCHE,
+                DGMASSEBUDGETAIRE = selectedDialogue.DGMASSEBUDGETAIRE,
+                DGDA = selectedDialogue.DGDA,
+                DGAXENATIONAL1 = selectedDialogue.DGAXENATIONAL1,
+                DGGRANDPROJET = selectedDialogue.DGGRANDPROJET,
+                DGNOMPROJET = selectedDialogue.DGNOMPROJET,
+                DGSTATUTPROJETG2PI = selectedDialogue.DGSTATUTPROJETG2PI,
+                DGCODEINITIATIVESDSI = selectedDialogue.DGCODEINITIATIVESDSI,
+                DGOBJECTINITIATIVE = selectedDialogue.DGOBJECTINITIATIVE,
+                DGCOMPTESBUDGETAIRES = selectedDialogue.DGCOMPTESBUDGETAIRES,
+                DGCOMPTESCOMPTABLES = selectedDialogue.DGCOMPTESCOMPTABLES,
+                DGPORTEFEUILLE = selectedDialogue.DGPORTEFEUILLE,
+                DGSOUSPORTEFEUILLE = selectedDialogue.DGSOUSPORTEFEUILLE,
+                DGCARACTERISTIQUEDUBESOIN = selectedDialogue.DGCARACTERISTIQUEDUBESOIN,
+                DGCRITICITE = selectedDialogue.DGCRITICITE,
+                DGBUDGETINITIALDEMANDE = selectedDialogue.DGBUDGETINITIALDEMANDE,
+                DGBUDGETDG1DEMANDE = selectedDialogue.DGBUDGETDG1DEMANDE,
+                DGBUDGETDG2DEMANDE = selectedDialogue.DGBUDGETDG2DEMANDE,
+                DGBUDGETDG3DEMANDE = selectedDialogue.DGBUDGETDG3DEMANDE,
+                DGBUDGETDG4DEMANDE = selectedDialogue.DGBUDGETDG4DEMANDE,
+                DGDEMANDEDEREPORTIDENTIFIE = selectedDialogue.DGDEMANDEDEREPORTIDENTIFIE,
+                DGPLANBUDGBIJANVIER = selectedDialogue.DGPLANBUDGBIJANVIER,
+                DGPLANBUDGBR1JUILLET = selectedDialogue.DGPLANBUDGBR1JUILLET,
+                DGPLANBUDGBR2NOVEMBRE = selectedDialogue.DGPLANBUDGBR2NOVEMBRE,
+                DGNUMEROAB = selectedDialogue.DGNUMEROAB,
+                DGNUMERODB = selectedDialogue.DGNUMERODB,
+                DGBIAUTORISE = selectedDialogue.DGBIAUTORISE,
+                DGBR1AUTORISE = selectedDialogue.DGBR1AUTORISE,
+                DGBR2AUTORISE = selectedDialogue.DGBR2AUTORISE,
+                DGNCOMMANDE = selectedDialogue.DGNCOMMANDE,
+                DGDATEDEDEBUT = selectedDialogue.DGDATEDEDEBUT,
+                DGDATEDEFIN = selectedDialogue.DGDATEDEFIN,
+                DGMONTANTCOMMANDE = selectedDialogue.DGMONTANTCOMMANDE,
+                DGNENGAGEMENT = selectedDialogue.DGNENGAGEMENT,
+                DGMONTANTENGAGE = selectedDialogue.DGMONTANTENGAGE,
+                DGREALISE = selectedDialogue.DGREALISE,
+                DGGA486ANNEEN1 = selectedDialogue.DGGA486ANNEEN1,
+                DGGA486ANNEEN2 = selectedDialogue.DGGA486ANNEEN2,
+                DGGA486ANNEEN3 = selectedDialogue.DGGA486ANNEEN3,
+                DGGA486ANNEEN4 = selectedDialogue.DGGA486ANNEEN4,
+                DGBUDGPREVN1 = selectedDialogue.DGBUDGPREVN1,
+                DGBUDGPREVN2 = selectedDialogue.DGBUDGPREVN2,
+                DGBUDGPREVN3 = selectedDialogue.DGBUDGPREVN3,
+                DGBUDGPREVN4 = selectedDialogue.DGBUDGPREVN4,
+                DGCOMMENTAIRES = selectedDialogue.DGCOMMENTAIRES,
+                DGANNEE = selectedDialogue.DGANNEE,
+                DGSERIEDEDONNEES = selectedDialogue.DGSERIEDEDONNEES
+            };
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+    }
+
+    /*private async Task SaveDialogue()
+    {
+        if (selectedDialogue != null)
+        {
+            await DataService.UpdateDialogueAsync(selectedDialogue);
+            NavigationManager.NavigateTo("/edit2");
+        }
+    }
+
+    private void CancelEdit()
+    {
+        NavigationManager.NavigateTo("/edit2");
+    }*/
+
+    private async Task SaveDialogue()
+    {
+        if (temporaryDialogue != null && selectedDialogue != null)
+        {
+            // Appliquer les modifications temporaires à l'original
+            selectedDialogue.DCODE = temporaryDialogue.DCODE;
+            selectedDialogue.DGMACRODESIGNATION = temporaryDialogue.DGMACRODESIGNATION;
+            selectedDialogue.DGNATUREDUBESOIN = temporaryDialogue.DGNATUREDUBESOIN;
+            selectedDialogue.DGCADREDACHAT = temporaryDialogue.DGCADREDACHAT;
+            selectedDialogue.DGFOURNISSEUR = temporaryDialogue.DGFOURNISSEUR;
+            selectedDialogue.DGNTIERS = temporaryDialogue.DGNTIERS;
+            selectedDialogue.DGLIBELLEDUMARCHE = temporaryDialogue.DGLIBELLEDUMARCHE;
+            selectedDialogue.DGMASSEBUDGETAIRE = temporaryDialogue.DGMASSEBUDGETAIRE;
+            selectedDialogue.DGDA = temporaryDialogue.DGDA;
+            selectedDialogue.DGAXENATIONAL1 = temporaryDialogue.DGAXENATIONAL1;
+            selectedDialogue.DGGRANDPROJET = temporaryDialogue.DGGRANDPROJET;
+            selectedDialogue.DGNOMPROJET = temporaryDialogue.DGNOMPROJET;
+            selectedDialogue.DGSTATUTPROJETG2PI = temporaryDialogue.DGSTATUTPROJETG2PI;
+            selectedDialogue.DGCODEINITIATIVESDSI = temporaryDialogue.DGCODEINITIATIVESDSI;
+            selectedDialogue.DGOBJECTINITIATIVE = temporaryDialogue.DGOBJECTINITIATIVE;
+            selectedDialogue.DGCOMPTESBUDGETAIRES = temporaryDialogue.DGCOMPTESBUDGETAIRES;
+            selectedDialogue.DGCOMPTESCOMPTABLES = temporaryDialogue.DGCOMPTESCOMPTABLES;
+            selectedDialogue.DGPORTEFEUILLE = temporaryDialogue.DGPORTEFEUILLE;
+            selectedDialogue.DGSOUSPORTEFEUILLE = temporaryDialogue.DGSOUSPORTEFEUILLE;
+            selectedDialogue.DGCARACTERISTIQUEDUBESOIN = temporaryDialogue.DGCARACTERISTIQUEDUBESOIN;
+            selectedDialogue.DGCRITICITE = temporaryDialogue.DGCRITICITE;
+            selectedDialogue.DGBUDGETINITIALDEMANDE = temporaryDialogue.DGBUDGETINITIALDEMANDE;
+            selectedDialogue.DGBUDGETDG1DEMANDE = temporaryDialogue.DGBUDGETDG1DEMANDE;
+            selectedDialogue.DGBUDGETDG2DEMANDE = temporaryDialogue.DGBUDGETDG2DEMANDE;
+            selectedDialogue.DGBUDGETDG3DEMANDE = temporaryDialogue.DGBUDGETDG3DEMANDE;
+            selectedDialogue.DGBUDGETDG4DEMANDE = temporaryDialogue.DGBUDGETDG4DEMANDE;
+            selectedDialogue.DGDEMANDEDEREPORTIDENTIFIE = temporaryDialogue.DGDEMANDEDEREPORTIDENTIFIE;
+            selectedDialogue.DGPLANBUDGBIJANVIER = temporaryDialogue.DGPLANBUDGBIJANVIER;
+            selectedDialogue.DGPLANBUDGBR1JUILLET = temporaryDialogue.DGPLANBUDGBR1JUILLET;
+            selectedDialogue.DGPLANBUDGBR2NOVEMBRE = temporaryDialogue.DGPLANBUDGBR2NOVEMBRE;
+            selectedDialogue.DGNUMEROAB = temporaryDialogue.DGNUMEROAB;
+            selectedDialogue.DGNUMERODB = temporaryDialogue.DGNUMERODB;
+            selectedDialogue.DGBIAUTORISE = temporaryDialogue.DGBIAUTORISE;
+            selectedDialogue.DGBR1AUTORISE = temporaryDialogue.DGBR1AUTORISE;
+            selectedDialogue.DGBR2AUTORISE = temporaryDialogue.DGBR2AUTORISE;
+            selectedDialogue.DGNCOMMANDE = temporaryDialogue.DGNCOMMANDE;
+            selectedDialogue.DGDATEDEDEBUT = temporaryDialogue.DGDATEDEDEBUT;
+            selectedDialogue.DGDATEDEFIN = temporaryDialogue.DGDATEDEFIN;
+            selectedDialogue.DGMONTANTCOMMANDE = temporaryDialogue.DGMONTANTCOMMANDE;
+            selectedDialogue.DGNENGAGEMENT = temporaryDialogue.DGNENGAGEMENT;
+            selectedDialogue.DGMONTANTENGAGE = temporaryDialogue.DGMONTANTENGAGE;
+            selectedDialogue.DGREALISE = temporaryDialogue.DGREALISE;
+            selectedDialogue.DGGA486ANNEEN1 = temporaryDialogue.DGGA486ANNEEN1;
+            selectedDialogue.DGGA486ANNEEN2 = temporaryDialogue.DGGA486ANNEEN2;
+            selectedDialogue.DGGA486ANNEEN3 = temporaryDialogue.DGGA486ANNEEN3;
+            selectedDialogue.DGGA486ANNEEN4 = temporaryDialogue.DGGA486ANNEEN4;
+            selectedDialogue.DGBUDGPREVN1 = temporaryDialogue.DGBUDGPREVN1;
+            selectedDialogue.DGBUDGPREVN2 = temporaryDialogue.DGBUDGPREVN2;
+            selectedDialogue.DGBUDGPREVN3 = temporaryDialogue.DGBUDGPREVN3;
+            selectedDialogue.DGBUDGPREVN4 = temporaryDialogue.DGBUDGPREVN4;
+            selectedDialogue.DGCOMMENTAIRES = temporaryDialogue.DGCOMMENTAIRES;
+            selectedDialogue.DGANNEE = temporaryDialogue.DGANNEE;
+            selectedDialogue.DGSERIEDEDONNEES = temporaryDialogue.DGSERIEDEDONNEES;
+
+            await DataService.UpdateDialogueAsync(selectedDialogue);
+            NavigationManager.NavigateTo("/edit2");
+        }
+    }
+
+    private void CancelEdit()
+    {
+        // Réinitialisez l'objet temporaire
+        temporaryDialogue = new Dialogue
+        {
+            DCODE = selectedDialogue.DCODE,
+            DGMACRODESIGNATION = selectedDialogue.DGMACRODESIGNATION,
+            DGNATUREDUBESOIN = selectedDialogue.DGNATUREDUBESOIN,
+            DGCADREDACHAT = selectedDialogue.DGCADREDACHAT,
+            DGFOURNISSEUR = selectedDialogue.DGFOURNISSEUR,
+            DGNTIERS = selectedDialogue.DGNTIERS,
+            DGLIBELLEDUMARCHE = selectedDialogue.DGLIBELLEDUMARCHE,
+            DGMASSEBUDGETAIRE = selectedDialogue.DGMASSEBUDGETAIRE,
+            DGDA = selectedDialogue.DGDA,
+            DGAXENATIONAL1 = selectedDialogue.DGAXENATIONAL1,
+            DGGRANDPROJET = selectedDialogue.DGGRANDPROJET,
+            DGNOMPROJET = selectedDialogue.DGNOMPROJET,
+            DGSTATUTPROJETG2PI = selectedDialogue.DGSTATUTPROJETG2PI,
+            DGCODEINITIATIVESDSI = selectedDialogue.DGCODEINITIATIVESDSI,
+            DGOBJECTINITIATIVE = selectedDialogue.DGOBJECTINITIATIVE,
+            DGCOMPTESBUDGETAIRES = selectedDialogue.DGCOMPTESBUDGETAIRES,
+            DGCOMPTESCOMPTABLES = selectedDialogue.DGCOMPTESCOMPTABLES,
+            DGPORTEFEUILLE = selectedDialogue.DGPORTEFEUILLE,
+            DGSOUSPORTEFEUILLE = selectedDialogue.DGSOUSPORTEFEUILLE,
+            DGCARACTERISTIQUEDUBESOIN = selectedDialogue.DGCARACTERISTIQUEDUBESOIN,
+            DGCRITICITE = selectedDialogue.DGCRITICITE,
+            DGBUDGETINITIALDEMANDE = selectedDialogue.DGBUDGETINITIALDEMANDE,
+            DGBUDGETDG1DEMANDE = selectedDialogue.DGBUDGETDG1DEMANDE,
+            DGBUDGETDG2DEMANDE = selectedDialogue.DGBUDGETDG2DEMANDE,
+            DGBUDGETDG3DEMANDE = selectedDialogue.DGBUDGETDG3DEMANDE,
+            DGBUDGETDG4DEMANDE = selectedDialogue.DGBUDGETDG4DEMANDE,
+            DGDEMANDEDEREPORTIDENTIFIE = selectedDialogue.DGDEMANDEDEREPORTIDENTIFIE,
+            DGPLANBUDGBIJANVIER = selectedDialogue.DGPLANBUDGBIJANVIER,
+            DGPLANBUDGBR1JUILLET = selectedDialogue.DGPLANBUDGBR1JUILLET,
+            DGPLANBUDGBR2NOVEMBRE = selectedDialogue.DGPLANBUDGBR2NOVEMBRE,
+            DGNUMEROAB = selectedDialogue.DGNUMEROAB,
+            DGNUMERODB = selectedDialogue.DGNUMERODB,
+            DGBIAUTORISE = selectedDialogue.DGBIAUTORISE,
+            DGBR1AUTORISE = selectedDialogue.DGBR1AUTORISE,
+            DGBR2AUTORISE = selectedDialogue.DGBR2AUTORISE,
+            DGNCOMMANDE = selectedDialogue.DGNCOMMANDE,
+            DGDATEDEDEBUT = selectedDialogue.DGDATEDEDEBUT,
+            DGDATEDEFIN = selectedDialogue.DGDATEDEFIN,
+            DGMONTANTCOMMANDE = selectedDialogue.DGMONTANTCOMMANDE,
+            DGNENGAGEMENT = selectedDialogue.DGNENGAGEMENT,
+            DGMONTANTENGAGE = selectedDialogue.DGMONTANTENGAGE,
+            DGREALISE = selectedDialogue.DGREALISE,
+            DGGA486ANNEEN1 = selectedDialogue.DGGA486ANNEEN1,
+            DGGA486ANNEEN2 = selectedDialogue.DGGA486ANNEEN2,
+            DGGA486ANNEEN3 = selectedDialogue.DGGA486ANNEEN3,
+            DGGA486ANNEEN4 = selectedDialogue.DGGA486ANNEEN4,
+            DGBUDGPREVN1 = selectedDialogue.DGBUDGPREVN1,
+            DGBUDGPREVN2 = selectedDialogue.DGBUDGPREVN2,
+            DGBUDGPREVN3 = selectedDialogue.DGBUDGPREVN3,
+            DGBUDGPREVN4 = selectedDialogue.DGBUDGPREVN4,
+            DGCOMMENTAIRES = selectedDialogue.DGCOMMENTAIRES,
+            DGANNEE = selectedDialogue.DGANNEE,
+            DGSERIEDEDONNEES = selectedDialogue.DGSERIEDEDONNEES
+        };
+
+        NavigationManager.NavigateTo("/edit2");
+    }
+
+
+}
+

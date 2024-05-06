@@ -6,8 +6,17 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using DialogueDeGestion.Controllers;
 using Radzen;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//var configuration = builder.Configuration;
+
+// Obtenir le mot de passe depuis la variable d'environnement
+//string dbPassword = Environment.GetEnvironmentVariable("PASSWORDMYSQL");
+
+// Remplacer le placeholder dans la chaîne de connexion par le mot de passe réel
+//string connectionString = configuration.GetConnectionString("DefaultConnection").Replace("{PASSWORD}", dbPassword);
 
 // Add services to the container.
 builder.Services.AddRazorPages();

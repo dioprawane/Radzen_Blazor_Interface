@@ -1,0 +1,8 @@
+/* wwwroot/css/my-styles.css */
+.modifiable-value {
+    background-color: #aef0f8;
+}
+
+.read-only-value {
+    background-color: #f0f5c1;
+}
