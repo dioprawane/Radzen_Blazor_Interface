@@ -75,4 +75,19 @@ public class DataService
         }
     }
 
+    public async Task DeleteDialogueAsync(int dcode)
+    {
+        var dialogue = await _context.Dialogue.FirstOrDefaultAsync(d => d.DCODE == dcode);
+        if (dialogue != null)
+        {
+            _context.Dialogue.Remove(dialogue);
+            await _context.SaveChangesAsync();
+            _logger.LogInformation($"Deleted dialogue with code {dcode}.");
+        }
+        else
+        {
+            _logger.LogWarning($"Dialogue with code {dcode} not found and cannot be deleted.");
+        }
+    }
+
 }

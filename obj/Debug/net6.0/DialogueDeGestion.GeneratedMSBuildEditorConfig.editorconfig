@@ -22,8 +22,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/Add.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/Collapsible.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29sbGFwc2libGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/Delete.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVsZXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/Edit-line.razor]
@@ -48,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Pages/Select.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VsZWN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Shared/ConfirmationDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbmZpcm1hdGlvbkRpYWxvZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ac75008612/OneDrive - RECOUV/VsCode/InterfaceBDD/Shared/MainLayout.razor]

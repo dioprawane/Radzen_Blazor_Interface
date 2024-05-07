@@ -42,8 +42,8 @@
             <input @bind="selectedDialogue.DGLIBELLEDUMARCHE" class="form-control" />
         </div>
         <div>
-            <button @onclick="SaveDialogue" class="btn btn-success">Save</button>
-            <button @onclick="CancelEdit" class="btn btn-secondary">Cancel</button>
+            <button @onclick="SaveDialogue" class="btn btn-success">Enregistrer</button>
+            <button @onclick="CancelEdit" class="btn btn-secondary">Annuler</button>
         </div>
     </div>
 }
@@ -125,7 +125,7 @@ else
                 {
                     <tr>
                         <td>
-                            <button @onclick="() => EditDialogue(dialogue)" class="btn btn-primary">Edit</button>
+                            <button @onclick="() => EditDialogue(dialogue)" class="btn btn-primary">Modifier</button>
                         </td>
                         <td>@dialogue.DCODE</td>
                         <td>@dialogue.DGMACRODESIGNATION</td>

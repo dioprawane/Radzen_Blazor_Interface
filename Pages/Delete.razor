@@ -1,7 +1,10 @@
-@page "/edit2"
+@page "/delete"
 @inject DataService DataService
 @using DialogueDeGestion.Models
-@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+@using DialogueDeGestion.Shared
+
+<ConfirmationDialog @ref="confirmationDialog" />
 
 <PageTitle>Vue des Dialogues</PageTitle>
 
@@ -12,6 +15,39 @@
 <!-- Filtrer les données -->
 <label for="filter">Filtrer par série de données :</label>
 <input @bind="filterText" @bind:event="oninput" id="filter" class="form-control" placeholder="Entrez une série de données" />
+
+<!-- Affichage et modification des données des la ligne sélectionnée -->
+@if (selectedDialogue != null)
+{
+    <div class="edit-form">
+        <h3>Modifier le Dialogue - Code : @selectedDialogue.DCODE</h3>
+        <div>
+            <label>Macro Designation :</label>
+            <input @bind="selectedDialogue.DGMACRODESIGNATION" class="form-control" />
+        </div>
+        <div>
+            <label>Nature du Besoin :</label>
+            <input @bind="selectedDialogue.DGNATUREDUBESOIN" class="form-control" />
+        </div>
+        <div>
+            <label>Cadre d'achat :</label>
+            <input @bind="selectedDialogue.DGCADREDACHAT" class="form-control" />
+        </div>
+        <div>
+            <label>Fournisseur :</label>
+            <input @bind="selectedDialogue.DGFOURNISSEUR" class="form-control" />
+        </div>
+        <div>
+            <label>N° tiers :</label>
+            <input @bind="selectedDialogue.DGNTIERS" class="form-control" />
+        </div>
+        <div>
+            <label>Libellé du marché :</label>
+            <input @bind="selectedDialogue.DGLIBELLEDUMARCHE" class="form-control" />
+        </div>
+    </div>
+}
+
 
 <!-- Chargement et affichage des données de la table -->
 @if (dialogues == null)
@@ -89,7 +125,7 @@ else
                 {
                     <tr>
                         <td>
-                            <button @onclick="() => NavigateToEdit(dialogue.DCODE)" class="btn btn-primary">Modifier</button>
+                            <button @onclick="() => ConfirmDelete(dialogue)" class="btn btn-danger">Supprimer</button>
                         </td>
                         <td>@dialogue.DCODE</td>
                         <td>@dialogue.DGMACRODESIGNATION</td>
@@ -154,8 +190,10 @@ else
 <!-- Méthodes utilisées au dessus -->
 @code {
     private List<Dialogue> dialogues;
+    private Dialogue selectedDialogue;
     private List<Dialogue> FilteredDialogues => dialogues?.Where(d => FilterDialogue(d)).ToList() ?? new List<Dialogue>();
     private string filterText = "";
+    private ConfirmationDialog confirmationDialog;
 
     protected override async Task OnInitializedAsync()
     {
@@ -174,10 +212,25 @@ else
     }
 
 
-    // Pour modifier
-    private void NavigateToEdit(int dcode)
+    // Pour supprimer
+
+    private void ConfirmDelete(Dialogue dialogue)
     {
-        NavigationManager.NavigateTo($"/edit-line/{dcode}");
+        confirmationDialog.ConfirmDelete($"Êtes-vous sûre de bien vouloir supprimer cette ligne avec le code : {dialogue.DCODE} de la table 'DIALOGUE' dans la base de données ?",
+            EventCallback.Factory.Create<bool>(this, (confirm) =>
+            {
+                if (confirm)
+                {
+                    DeleteDialogue(dialogue);
+                }
+            }));
+    }
+
+    private async Task DeleteDialogue(Dialogue dialogue)
+    {
+        await DataService.DeleteDialogueAsync(dialogue.DCODE);
+        dialogues = await DataService.GetAllDialoguesAsync();
+        StateHasChanged();
     }
 
 }
