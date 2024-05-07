@@ -13,10 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 //var configuration = builder.Configuration;
 
 // Obtenir le mot de passe depuis la variable d'environnement
-//string dbPassword = Environment.GetEnvironmentVariable("PASSWORDMYSQL");
+string dbPassword = Environment.GetEnvironmentVariable("PASSWORDMYSQL") ?? "default_password";
+
+Console.WriteLine("Mot de passe DB récupéré: " + dbPassword);
 
 // Remplacer le placeholder dans la chaîne de connexion par le mot de passe réel
-//string connectionString = configuration.GetConnectionString("DefaultConnection").Replace("{PASSWORD}", dbPassword);
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection").Replace("{PASSWORD}", dbPassword);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -30,9 +32,15 @@ builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
 
 // Ajouter la connexion à la base de données
-builder.Services.AddDbContext<AppDbContext>(options =>
+/*builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), 
+                     new MySqlServerVersion(new Version(8, 0, 21))));*/
+
+// Ajoutez la connexion à la base de données avec la chaîne de connexion ajustée
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(connectionString, 
                      new MySqlServerVersion(new Version(8, 0, 21))));
+
 
 builder.Services.AddScoped<DataService>();
 
