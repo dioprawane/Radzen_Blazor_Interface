@@ -90,4 +90,22 @@ public class DataService
         }
     }
 
+    // Inside DataService.cs
+
+    public async Task AddDialogueAsync(Dialogue newDialogue)
+    {
+        try
+        {
+            _context.Dialogue.Add(newDialogue);
+            await _context.SaveChangesAsync();
+            _logger.LogInformation("New dialogue added successfully with ID: {Id}", newDialogue.DCODE);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error adding new dialogue");
+            throw; // Optionally re-throw to handle the error outside this method
+        }
+    }
+
+
 }

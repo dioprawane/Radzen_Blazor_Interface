@@ -3,234 +3,252 @@
 @using DialogueDeGestion.Models
 @inject IJSRuntime JS
 @using DialogueDeGestion.Shared
+@inject NavigationManager NavigationManager
 
-<ConfirmationDialog @ref="confirmationDialog" />
+<PageTitle>Ajout Dialogue</PageTitle>
 
-<PageTitle>Vue des Dialogues</PageTitle>
+<h1>Add New Dialogue</h1>
 
-<h1>Dialogues</h1>
-
-<h3>Table DIALOGUE de la Base de données dialogue_gestion :</h3>
-
-<!-- Filtrer les données -->
-<label for="filter">Filtrer par série de données :</label>
-<input @bind="filterText" @bind:event="oninput" id="filter" class="form-control" placeholder="Entrez une série de données" />
-
-<!-- Affichage et modification des données des la ligne sélectionnée -->
-@if (selectedDialogue != null)
-{
-    <div class="edit-form">
-        <h3>Modifier le Dialogue - Code : @selectedDialogue.DCODE</h3>
-        <div>
-            <label>Macro Designation :</label>
-            <input @bind="selectedDialogue.DGMACRODESIGNATION" class="form-control" />
-        </div>
-        <div>
-            <label>Nature du Besoin :</label>
-            <input @bind="selectedDialogue.DGNATUREDUBESOIN" class="form-control" />
-        </div>
-        <div>
-            <label>Cadre d'achat :</label>
-            <input @bind="selectedDialogue.DGCADREDACHAT" class="form-control" />
-        </div>
-        <div>
-            <label>Fournisseur :</label>
-            <input @bind="selectedDialogue.DGFOURNISSEUR" class="form-control" />
-        </div>
-        <div>
-            <label>N° tiers :</label>
-            <input @bind="selectedDialogue.DGNTIERS" class="form-control" />
-        </div>
-        <div>
-            <label>Libellé du marché :</label>
-            <input @bind="selectedDialogue.DGLIBELLEDUMARCHE" class="form-control" />
-        </div>
+<form>
+    <div>
+        <label>Code :</label>
+        <input @bind="newDialogue.DCODE" class="form-control" />
     </div>
-}
+    <div>
+        <label>Macro Designation :</label>
+        <input @bind="newDialogue.DGMACRODESIGNATION" class="form-control" />
+    </div>
+    <div>
+        <label>Nature du Besoin :</label>
+        <input @bind="newDialogue.DGNATUREDUBESOIN" class="form-control" />
+    </div>
+    <div>
+        <label>Cadre d'achat :</label>
+        <input @bind="newDialogue.DGCADREDACHAT" class="form-control" />
+    </div>
+    <div>
+        <label>Fournisseur :</label>
+        <input @bind="newDialogue.DGFOURNISSEUR" class="form-control" />
+    </div>
+    <div>
+        <label>N° tiers :</label>
+        <input @bind="newDialogue.DGNTIERS" class="form-control" />
+    </div>
+    <div>
+        <label>Libellé du marché :</label>
+        <input @bind="newDialogue.DGLIBELLEDUMARCHE" class="form-control" />
+    </div>
+    <div>
+        <label>Masse budgétaire :</label>
+        <input @bind="newDialogue.DGMASSEBUDGETAIRE" class="form-control" />
+    </div>
+    <div>
+        <label>Demande d'achat :</label>
+        <input @bind="newDialogue.DGDA" class="form-control" />
+    </div>
+    <div>
+        <label>Axe national 1 :</label>
+        <input @bind="newDialogue.DGAXENATIONAL1" class="form-control" />
+    </div>
+    <div>
+        <label>Grand projet :</label>
+        <input @bind="newDialogue.DGGRANDPROJET" class="form-control" />
+    </div>
+    <div>
+        <label>Nom projet :</label>
+        <input @bind="newDialogue.DGNOMPROJET" class="form-control" />
+    </div>
+    <div>
+        <label>Statut projet G2PI :</label>
+        <input @bind="newDialogue.DGSTATUTPROJETG2PI" class="form-control" />
+    </div>
+    <div>
+        <label>Code initiative SDSI :</label>
+        <input @bind="newDialogue.DGCODEINITIATIVESDSI" class="form-control" />
+    </div>
+    <div>
+        <label>Objet initiative :</label>
+        <input @bind="newDialogue.DGOBJECTINITIATIVE" class="form-control" />
+    </div>
+    <div>
+        <label>Compte budgétaire :</label>
+        <input @bind="newDialogue.DGCOMPTESBUDGETAIRES" class="form-control" />
+    </div>
+    <div>
+        <label>Compte comptable :</label>
+        <input @bind="newDialogue.DGCOMPTESCOMPTABLES" class="form-control" />
+    </div>
+    <div>
+        <label>Portefeuille :</label>
+        <input @bind="newDialogue.DGPORTEFEUILLE" class="form-control" />
+    </div>
+    <div>
+        <label>Sous portefeuille :</label>
+        <input @bind="newDialogue.DGSOUSPORTEFEUILLE" class="form-control" />
+    </div>
+    <div>
+        <label>Caractéristique du besoin :</label>
+        <input @bind="newDialogue.DGCARACTERISTIQUEDUBESOIN" class="form-control" />
+    </div>
+    <div>
+        <label>Criticité :</label>
+        <input @bind="newDialogue.DGCRITICITE" class="form-control" />
+    </div>
+    <div>
+        <label>Budget initial demandé :</label>
+        <input @bind="newDialogue.DGBUDGETINITIALDEMANDE" class="form-control" />
+    </div>
+    <div>
+        <label>Budget DG1 demandé :</label>
+        <input @bind="newDialogue.DGBUDGETDG1DEMANDE" class="form-control" />
+    </div>
+    <div>
+        <label>Budget DG2 demandé :</label>
+        <input @bind="newDialogue.DGBUDGETDG2DEMANDE" class="form-control" />
+    </div>
+    <div>
+        <label>Budget DG3 demandé :</label>
+        <input @bind="newDialogue.DGBUDGETDG3DEMANDE" class="form-control" />
+    </div>
+    <div>
+        <label>Budget DG4 demandé :</label>
+        <input @bind="newDialogue.DGBUDGETDG4DEMANDE" class="form-control" />
+    </div>
+    <div>
+        <label>Demande report identifié :</label>
+        <input @bind="newDialogue.DGDEMANDEDEREPORTIDENTIFIE" class="form-control" />
+    </div>
+    <div>
+        <label>Plan budg BI janvier :</label>
+        <input @bind="newDialogue.DGPLANBUDGBIJANVIER" class="form-control" />
+    </div>
+    <div>
+        <label>Plan budg BR1 juillet :</label>
+        <input @bind="newDialogue.DGPLANBUDGBR1JUILLET" class="form-control" />
+    </div>
+    <div>
+        <label>Plan budg BR2 novembre :</label>
+        <input @bind="newDialogue.DGPLANBUDGBR2NOVEMBRE" class="form-control" />
+    </div>
+    <div>
+        <label>Numéro AB :</label>
+        <input @bind="newDialogue.DGNUMEROAB" class="form-control" />
+    </div>
+    <div>
+        <label>Numéro DB :</label>
+        <input @bind="newDialogue.DGNUMERODB" class="form-control" />
+    </div>
+    <div>
+        <label>BI autorisé :</label>
+        <input @bind="newDialogue.DGBIAUTORISE" class="form-control" />
+    </div>
+    <div>
+        <label>BR1 autorisé :</label>
+        <input @bind="newDialogue.DGBR1AUTORISE" class="form-control" />
+    </div>
+    <div>
+        <label>BR2 autorisé :</label>
+        <input @bind="newDialogue.DGBR2AUTORISE" class="form-control" />
+    </div>
+    <div>
+        <label>N° commande :</label>
+        <input @bind="newDialogue.DGNCOMMANDE" class="form-control" />
+    </div>
+    <div>
+        <label>Date de Début :</label>
+        <input @bind="newDialogue.DGDATEDEDEBUT" type="date" class="form-control" />
+    </div>
+    <div>
+        <label>Date de Fin :</label>
+        <input @bind="newDialogue.DGDATEDEFIN" type="date" class="form-control" />
+    </div>
+    <div>
+        <label>Montant Commandé :</label>
+        <input @bind="newDialogue.DGMONTANTCOMMANDE" class="form-control" />
+    </div>
+    <div>
+        <label>N° engagement :</label>
+        <input @bind="newDialogue.DGNENGAGEMENT" class="form-control" />
+    </div>
+    <div>
+        <label>Montant engagé :</label>
+        <input @bind="newDialogue.DGMONTANTENGAGE" class="form-control" />
+    </div>
+    <div>
+        <label>Réalisé :</label>
+        <input @bind="newDialogue.DGREALISE" class="form-control" />
+    </div>
+    <div>
+        <label>GA486 année N+1 :</label>
+        <input @bind="newDialogue.DGGA486ANNEEN1" class="form-control" />
+    </div>
+    <div>
+        <label>GA486 année N+2 :</label>
+        <input @bind="newDialogue.DGGA486ANNEEN2" class="form-control" />
+    </div>
+    <div>
+        <label>GA486 année N+3 :</label>
+        <input @bind="newDialogue.DGGA486ANNEEN3" class="form-control" />
+    </div>
+    <div>
+        <label>GA486 année N+4 :</label>
+        <input @bind="newDialogue.DGGA486ANNEEN4" class="form-control" />
+    </div>
+    <div>
+        <label>Budg prev N+1 :</label>
+        <input @bind="newDialogue.DGBUDGPREVN1" class="form-control" />
+    </div>
+    <div>
+        <label>Budg prev N+2 :</label>
+        <input @bind="newDialogue.DGBUDGPREVN2" class="form-control" />
+    </div>
+    <div>
+        <label>Budg prev N+3 :</label>
+        <input @bind="newDialogue.DGBUDGPREVN3" class="form-control" />
+    </div>
+    <div>
+        <label>Budg prev N+4 :</label>
+        <input @bind="newDialogue.DGBUDGPREVN4" class="form-control" />
+    </div>
+    <div>
+        <label>Commentaires :</label>
+        <input @bind="newDialogue.DGCOMMENTAIRES" class="form-control" />
+    </div>
+    <div>
+        <label>Année :</label>
+        <input @bind="newDialogue.DGANNEE" class="form-control" />
+    </div>
+    <div>
+        <label>Série de données :</label>
+        <input @bind="newDialogue.DGSERIEDEDONNEES" class="form-control" />
+    </div>
+    <!-- Add more fields as per the table structure -->
 
+    <button type="button" class="btn btn-success" @onclick="ConfirmAdd">Ajouter</button>
+    <button type="button" class="btn btn-danger" @onclick="CancelAdd">Annuler</button>
+</form>
 
-<!-- Chargement et affichage des données de la table -->
-@if (dialogues == null)
-{
-    <p><em>Loading...</em></p>
-}
-else if (!dialogues.Any())
-{
-    <p>No dialogue found.</p>
-}
-else
-{
-    <div class="scrollable-table">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Code</th>
-                    <th>Macro Designation</th>
-                    <th>Nature du Besoin</th>
-                    <th>Cadre d'achat</th>
-                    <th>Founisseur</th>
-                    <th>N° tiers</th>
-                    <th>Libellé du marché</th>
-                    <th>Masse budgétaire</th>
-                    <th>Demande d'achat</th>
-                    <th>Axe national 1</th>
-                    <th>Grand projet</th>
-                    <th>Nom projet</th>
-                    <th>Statut projet G2PI</th>
-                    <th>Code initiative SDSI</th>
-                    <th>Objet initiative</th>
-                    <th>Compte budgétaire</th>
-                    <th>Compte comptable</th>
-                    <th>Portefeuille</th>
-                    <th>Sous portefeuille</th>
-                    <th>Caractéristique du besoin</th>
-                    <th>Criticité</th>
-                    <th>Budget initial demandé</th>
-                    <th>Budget DG1 demandé</th>
-                    <th>Budget DG2 demandé</th>
-                    <th>Budget DG3 demandé</th>
-                    <th>Budget DG4 demandé</th>
-                    <th>Demande report identifié</th>
-                    <th>Plan budg BI janvier</th>
-                    <th>Plan budg BR1 juillet</th>
-                    <th>Plan budg BR2 novembre</th>
-                    <th>Numéro AB</th>
-                    <th>Numéro DB</th>
-                    <th>BI autorisé</th>
-                    <th>BR1 autorisé</th>
-                    <th>BR2 autorisé</th>
-                    <th>N° commande</th>
-                    <th>Date de Début</th>
-                    <th>Date de Fin</th>
-                    <th>Montant Commandé</th>
-                    <th>N° engagement</th>
-                    <th>Montant engagé</th>
-                    <th>Réalisé</th>
-                    <th>GA486 année N+1</th>
-                    <th>GA486 année N+2</th>
-                    <th>GA486 année N+3</th>
-                    <th>GA486 année N+4</th>
-                    <th>Budg prev N+1</th>
-                    <th>Budg prev N+2</th>
-                    <th>Budg prev N+3</th>
-                    <th>Budg prev N+4</th>
-                    <th>Commentaires</th>
-                    <th>Année</th>
-                    <th>Série de données</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var dialogue in FilteredDialogues)
-                {
-                    <tr>
-                        <td>
-                            <button @onclick="() => ConfirmDelete(dialogue)" class="btn btn-danger">Ajouter</button>
-                        </td>
-                        <td>@dialogue.DCODE</td>
-                        <td>@dialogue.DGMACRODESIGNATION</td>
-                        <td>@dialogue.DGNATUREDUBESOIN</td>
-                        <td>@dialogue.DGCADREDACHAT</td>
-                        <td>@dialogue.DGFOURNISSEUR</td>
-                        <td>@dialogue.DGNTIERS</td>
-                        <td>@dialogue.DGLIBELLEDUMARCHE</td>
-                        <td>@dialogue.DGMASSEBUDGETAIRE</td>
-                        <td>@dialogue.DGDA</td>
-                        <td>@dialogue.DGAXENATIONAL1</td>
-                        <td>@dialogue.DGGRANDPROJET</td>
-                        <td>@dialogue.DGNOMPROJET</td>
-                        <td>@dialogue.DGSTATUTPROJETG2PI</td>
-                        <td>@dialogue.DGCODEINITIATIVESDSI</td>
-                        <td>@dialogue.DGOBJECTINITIATIVE</td>
-                        <td>@dialogue.DGCOMPTESBUDGETAIRES</td>
-                        <td>@dialogue.DGCOMPTESCOMPTABLES</td>
-                        <td>@dialogue.DGPORTEFEUILLE</td>
-                        <td>@dialogue.DGSOUSPORTEFEUILLE</td>
-                        <td>@dialogue.DGCARACTERISTIQUEDUBESOIN</td>
-                        <td>@dialogue.DGCRITICITE</td>
-                        <td>@dialogue.DGBUDGETINITIALDEMANDE</td>
-                        <td>@dialogue.DGBUDGETDG1DEMANDE</td>
-                        <td>@dialogue.DGBUDGETDG2DEMANDE</td>
-                        <td>@dialogue.DGBUDGETDG3DEMANDE</td>
-                        <td>@dialogue.DGBUDGETDG4DEMANDE</td>
-                        <td>@dialogue.DGDEMANDEDEREPORTIDENTIFIE</td>
-                        <td>@dialogue.DGPLANBUDGBIJANVIER</td>
-                        <td>@dialogue.DGPLANBUDGBR1JUILLET</td>
-                        <td>@dialogue.DGPLANBUDGBR2NOVEMBRE</td>
-                        <td>@dialogue.DGNUMEROAB</td>
-                        <td>@dialogue.DGNUMERODB</td>
-                        <td>@dialogue.DGBIAUTORISE</td>
-                        <td>@dialogue.DGBR1AUTORISE</td>
-                        <td>@dialogue.DGBR2AUTORISE</td>
-                        <td>@dialogue.DGNCOMMANDE</td>
-                        <td>@dialogue.DGDATEDEDEBUT.ToShortDateString()</td>
-                        <td>@dialogue.DGDATEDEFIN.ToShortDateString()</td>
-                        <td>@String.Format("{0:C}", dialogue.DGMONTANTCOMMANDE)</td>
-                        <td>@dialogue.DGNENGAGEMENT</td>
-                        <td>@dialogue.DGMONTANTENGAGE</td>
-                        <td>@dialogue.DGREALISE</td>
-                        <td>@dialogue.DGGA486ANNEEN1</td>
-                        <td>@dialogue.DGGA486ANNEEN2</td>
-                        <td>@dialogue.DGGA486ANNEEN3</td>
-                        <td>@dialogue.DGGA486ANNEEN4</td>
-                        <td>@dialogue.DGBUDGPREVN1</td>
-                        <td>@dialogue.DGBUDGPREVN2</td>
-                        <td>@dialogue.DGBUDGPREVN3</td>
-                        <td>@dialogue.DGBUDGPREVN4</td>
-                        <td>@dialogue.DGCOMMENTAIRES</td>
-                        <td>@dialogue.DGANNEE</td>
-                        <td>@dialogue.DGSERIEDEDONNEES</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-     </div>   
-}
-
-<!-- Méthodes utilisées au dessus -->
 @code {
-    private List<Dialogue> dialogues;
-    private Dialogue selectedDialogue;
-    private List<Dialogue> FilteredDialogues => dialogues?.Where(d => FilterDialogue(d)).ToList() ?? new List<Dialogue>();
-    private string filterText = "";
-    private ConfirmationDialog confirmationDialog;
+    private Dialogue newDialogue = new Dialogue();
 
-    protected override async Task OnInitializedAsync()
+    private async Task ConfirmAdd()
     {
-        try
+        var confirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to add this dialogue?");
+        if (confirmed)
         {
-            dialogues = await DataService.GetAllDialoguesAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            await AddDialogue();
         }
     }
-    private bool FilterDialogue(Dialogue dialogue)
+
+    private async Task AddDialogue()
     {
-        return string.IsNullOrEmpty(filterText) || dialogue.DGSERIEDEDONNEES.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+        await DataService.AddDialogueAsync(newDialogue);
+        NavigationManager.NavigateTo("/select"); // Adjust the path as needed
     }
 
-
-    // Pour supprimer
-
-    private void ConfirmDelete(Dialogue dialogue)
+    private void CancelAdd()
     {
-        confirmationDialog.ConfirmDelete($"Êtes-vous sûre de bien vouloir supprimer cette ligne avec le code : {dialogue.DCODE} de la table 'DIALOGUE' dans la base de données ?",
-            EventCallback.Factory.Create<bool>(this, (confirm) =>
-            {
-                if (confirm)
-                {
-                    DeleteDialogue(dialogue);
-                }
-            }));
+        newDialogue = new Dialogue(); // Reset form
+        NavigationManager.NavigateTo("/select"); // Adjust the path as needed
     }
-
-    private async Task DeleteDialogue(Dialogue dialogue)
-    {
-        await DataService.DeleteDialogueAsync(dialogue.DCODE);
-        dialogues = await DataService.GetAllDialoguesAsync();
-        StateHasChanged();
-    }
-
 }
