@@ -233,7 +233,7 @@
 
     private async Task ConfirmAdd()
     {
-        var confirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to add this dialogue?");
+        var confirmed = await JS.InvokeAsync<bool>("confirm", "Êtes-vous sûre de vouloir ajouter cette ligne dans la BDD ?");
         if (confirmed)
         {
             await AddDialogue();

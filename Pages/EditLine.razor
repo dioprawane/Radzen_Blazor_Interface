@@ -1,0 +1,89 @@
+@page "/editnew-line/{dcode:int}"
+@inject DataService DataService
+@inject NavigationManager NavigationManager
+@using DialogueDeGestion.Models
+
+<PageTitle>Modifier Dialogue</PageTitle>
+
+<h3>Modifier Dialogue</h3>
+
+@if (dialogue == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="edit-form">
+        <div>
+            <label>Macro Designation :</label>
+            <input @bind="dialogue.DGMACRODESIGNATION" class="form-control" />
+        </div>
+        <div>
+            <label>Nature du Besoin :</label>
+            <input @bind="dialogue.DGNATUREDUBESOIN" class="form-control" />
+        </div>
+        <div>
+            <label>Cadre d'achat :</label>
+            <input @bind="dialogue.DGCADREDACHAT" class="form-control" />
+        </div>
+        <div>
+            <label>Fournisseur :</label>
+            <input @bind="dialogue.DGFOURNISSEUR" class="form-control" />
+        </div>
+        <div>
+            <label>N° tiers :</label>
+            <input @bind="dialogue.DGNTIERS" type="number" class="form-control" />
+        </div>
+        <div>
+            <label>Libellé du marché :</label>
+            <input @bind="dialogue.DGLIBELLEDUMARCHE" class="form-control" />
+        </div>
+        <!-- Ajoutez d'autres champs selon vos besoins -->
+        <button @onclick="Save" class="btn btn-primary">Sauvegarder</button>
+        <button @onclick="Cancel" class="btn btn-secondary">Annuler</button>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int dcode { get; set; }
+    private Dialogue dialogue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        dialogue = await DataService.GetDialogueByCodeAsync(dcode);
+        if (dialogue == null)
+        {
+            NavigationManager.NavigateTo("/editnew");
+        }
+    }
+
+    private async Task Save()
+    {
+        if (dialogue != null)
+        {
+            var success = await DataService.AddUpdatedDialogueAsync(
+                dialogue.DCODE, 
+                dialogue.DGMACRODESIGNATION, 
+                dialogue.DGNATUREDUBESOIN, 
+                dialogue.DGCADREDACHAT, 
+                dialogue.DGFOURNISSEUR, 
+                dialogue.DGNTIERS, 
+                dialogue.DGLIBELLEDUMARCHE);
+
+            if (success)
+            {
+                NavigationManager.NavigateTo("/editnew");
+            }
+            else
+            {
+                // Affichez un message d'erreur ou gérez l'échec de la mise à jour comme nécessaire
+            }
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/editnew");
+    }
+}
