@@ -1,16 +1,19 @@
 @page "/select"
 @inject DataService DataService
 @using DialogueDeGestion.Models
+@inject IJSRuntime JS
 
 <PageTitle>Vue des Dialogues</PageTitle>
 
 <h1>Dialogues</h1>
 
-<h3>Table DIALOGUE de la Base de données dialogue_gestion :</h3>
+<div class="inline-header">
+    <h3>Table DIALOGUE de la Base de données dialogue_gestion :</h3>
+    <button @onclick="ExportToExcel" class="btn btn-primary">Export to Excel</button>
+</div>
 
 <label for="filter">Filtrer par série de données :</label>
 <input @bind="filterText" @bind:event="oninput" id="filter" class="form-control" placeholder="Entrez une série de données" />
-
 
 @if (dialogues == null)
 {
@@ -165,5 +168,131 @@ else
     private bool FilterDialogue(Dialogue dialogue)
     {
         return string.IsNullOrEmpty(filterText) || dialogue.DGSERIEDEDONNEES.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private async Task ExportToExcel()
+    {
+        using var workbook = new ClosedXML.Excel.XLWorkbook();
+        var worksheet = workbook.Worksheets.Add("Dialogues");
+
+        // Add Headers
+        worksheet.Cell(1, 1).Value = "Code";
+        worksheet.Cell(1, 2).Value = "Macro Designation";
+        worksheet.Cell(1, 3).Value = "Nature du Besoin";
+        worksheet.Cell(1, 4).Value = "Cadre d'achat";
+        worksheet.Cell(1, 5).Value = "Fournisseur";
+        worksheet.Cell(1, 6).Value = "N° tiers";
+        worksheet.Cell(1, 7).Value = "Libellé du marché";
+        worksheet.Cell(1, 8).Value = "Masse budgétaire";
+        worksheet.Cell(1, 9).Value = "Demande d'achat";
+        worksheet.Cell(1, 10).Value = "Axe national 1";
+        worksheet.Cell(1, 11).Value = "Grand projet";
+        worksheet.Cell(1, 12).Value = "Nom projet";
+        worksheet.Cell(1, 13).Value = "Statut projet G2PI";
+        worksheet.Cell(1, 14).Value = "Code initiative SDSI";
+        worksheet.Cell(1, 15).Value = "Objet initiative";
+        worksheet.Cell(1, 16).Value = "Compte budgétaire";
+        worksheet.Cell(1, 17).Value = "Compte comptable";
+        worksheet.Cell(1, 18).Value = "Portefeuille";
+        worksheet.Cell(1, 19).Value = "Sous portefeuille";
+        worksheet.Cell(1, 20).Value = "Caractéristique du besoin";
+        worksheet.Cell(1, 21).Value = "Criticité";
+        worksheet.Cell(1, 22).Value = "Budget initial demandé";
+        worksheet.Cell(1, 23).Value = "Budget DG1 demandé";
+        worksheet.Cell(1, 24).Value = "Budget DG2 demandé";
+        worksheet.Cell(1, 25).Value = "Budget DG3 demandé";
+        worksheet.Cell(1, 26).Value = "Budget DG4 demandé";
+        worksheet.Cell(1, 27).Value = "Demande report identifié";
+        worksheet.Cell(1, 28).Value = "Plan budg BI janvier";
+        worksheet.Cell(1, 29).Value = "Plan budg BR1 juillet";
+        worksheet.Cell(1, 30).Value = "Plan budg BR2 novembre";
+        worksheet.Cell(1, 31).Value = "Numéro AB";
+        worksheet.Cell(1, 32).Value = "Numéro DB";
+        worksheet.Cell(1, 33).Value = "BI autorisé";
+        worksheet.Cell(1, 34).Value = "BR1 autorisé";
+        worksheet.Cell(1, 35).Value = "BR2 autorisé";
+        worksheet.Cell(1, 36).Value = "N° commande";
+        worksheet.Cell(1, 37).Value = "Date de Début";
+        worksheet.Cell(1, 38).Value = "Date de Fin";
+        worksheet.Cell(1, 39).Value = "Montant Commandé";
+        worksheet.Cell(1, 40).Value = "N° engagement";
+        worksheet.Cell(1, 41).Value = "Montant engagé";
+        worksheet.Cell(1, 42).Value = "Réalisé";
+        worksheet.Cell(1, 43).Value = "GA486 année N+1";
+        worksheet.Cell(1, 44).Value = "GA486 année N+2";
+        worksheet.Cell(1, 45).Value = "GA486 année N+3";
+        worksheet.Cell(1, 46).Value = "GA486 année N+4";
+        worksheet.Cell(1, 47).Value = "Budg prev N+1";
+        worksheet.Cell(1, 48).Value = "Budg prev N+2";
+        worksheet.Cell(1, 49).Value = "Budg prev N+3";
+        worksheet.Cell(1, 50).Value = "Budg prev N+4";
+        worksheet.Cell(1, 51).Value = "Commentaires";
+        worksheet.Cell(1, 52).Value = "Année";
+        worksheet.Cell(1, 53).Value = "Série de données";
+
+        // Add Data
+        for (int i = 0; i < FilteredDialogues.Count; i++)
+        {
+            var dialogue = FilteredDialogues[i];
+            worksheet.Cell(i + 2, 1).Value = dialogue.DCODE;
+            worksheet.Cell(i + 2, 2).Value = dialogue.DGMACRODESIGNATION;
+            worksheet.Cell(i + 2, 3).Value = dialogue.DGNATUREDUBESOIN;
+            worksheet.Cell(i + 2, 4).Value = dialogue.DGCADREDACHAT;
+            worksheet.Cell(i + 2, 5).Value = dialogue.DGFOURNISSEUR;
+            worksheet.Cell(i + 2, 6).Value = dialogue.DGNTIERS;
+            worksheet.Cell(i + 2, 7).Value = dialogue.DGLIBELLEDUMARCHE;
+            worksheet.Cell(i + 2, 8).Value = dialogue.DGMASSEBUDGETAIRE;
+            worksheet.Cell(i + 2, 9).Value = dialogue.DGDA;
+            worksheet.Cell(i + 2, 10).Value = dialogue.DGAXENATIONAL1;
+            worksheet.Cell(i + 2, 11).Value = dialogue.DGGRANDPROJET;
+            worksheet.Cell(i + 2, 12).Value = dialogue.DGNOMPROJET;
+            worksheet.Cell(i + 2, 13).Value = dialogue.DGSTATUTPROJETG2PI;
+            worksheet.Cell(i + 2, 14).Value = dialogue.DGCODEINITIATIVESDSI;
+            worksheet.Cell(i + 2, 15).Value = dialogue.DGOBJECTINITIATIVE;
+            worksheet.Cell(i + 2, 16).Value = dialogue.DGCOMPTESBUDGETAIRES;
+            worksheet.Cell(i + 2, 17).Value = dialogue.DGCOMPTESCOMPTABLES;
+            worksheet.Cell(i + 2, 18).Value = dialogue.DGPORTEFEUILLE;
+            worksheet.Cell(i + 2, 19).Value = dialogue.DGSOUSPORTEFEUILLE;
+            worksheet.Cell(i + 2, 20).Value = dialogue.DGCARACTERISTIQUEDUBESOIN;
+            worksheet.Cell(i + 2, 21).Value = dialogue.DGCRITICITE;
+            worksheet.Cell(i + 2, 22).Value = dialogue.DGBUDGETINITIALDEMANDE;
+            worksheet.Cell(i + 2, 23).Value = dialogue.DGBUDGETDG1DEMANDE;
+            worksheet.Cell(i + 2, 24).Value = dialogue.DGBUDGETDG2DEMANDE;
+            worksheet.Cell(i + 2, 25).Value = dialogue.DGBUDGETDG3DEMANDE;
+            worksheet.Cell(i + 2, 26).Value = dialogue.DGBUDGETDG4DEMANDE;
+            worksheet.Cell(i + 2, 27).Value = dialogue.DGDEMANDEDEREPORTIDENTIFIE;
+            worksheet.Cell(i + 2, 28).Value = dialogue.DGPLANBUDGBIJANVIER;
+            worksheet.Cell(i + 2, 29).Value = dialogue.DGPLANBUDGBR1JUILLET;
+            worksheet.Cell(i + 2, 30).Value = dialogue.DGPLANBUDGBR2NOVEMBRE;
+            worksheet.Cell(i + 2, 31).Value = dialogue.DGNUMEROAB;
+            worksheet.Cell(i + 2, 32).Value = dialogue.DGNUMERODB;
+            worksheet.Cell(i + 2, 33).Value = dialogue.DGBIAUTORISE;
+            worksheet.Cell(i + 2, 34).Value = dialogue.DGBR1AUTORISE;
+            worksheet.Cell(i + 2, 35).Value = dialogue.DGBR2AUTORISE;
+            worksheet.Cell(i + 2, 36).Value = dialogue.DGNCOMMANDE;
+            worksheet.Cell(i + 2, 37).Value = dialogue.DGDATEDEDEBUT.ToShortDateString();
+            worksheet.Cell(i + 2, 38).Value = dialogue.DGDATEDEFIN.ToShortDateString();
+            worksheet.Cell(i + 2, 39).Value = dialogue.DGMONTANTCOMMANDE;
+            worksheet.Cell(i + 2, 40).Value = dialogue.DGNENGAGEMENT;
+            worksheet.Cell(i + 2, 41).Value = dialogue.DGMONTANTENGAGE;
+            worksheet.Cell(i + 2, 42).Value = dialogue.DGREALISE;
+            worksheet.Cell(i + 2, 43).Value = dialogue.DGGA486ANNEEN1;
+            worksheet.Cell(i + 2, 44).Value = dialogue.DGGA486ANNEEN2;
+            worksheet.Cell(i + 2, 45).Value = dialogue.DGGA486ANNEEN3;
+            worksheet.Cell(i + 2, 46).Value = dialogue.DGGA486ANNEEN4;
+            worksheet.Cell(i + 2, 47).Value = dialogue.DGBUDGPREVN1;
+            worksheet.Cell(i + 2, 48).Value = dialogue.DGBUDGPREVN2;
+            worksheet.Cell(i + 2, 49).Value = dialogue.DGBUDGPREVN3;
+            worksheet.Cell(i + 2, 50).Value = dialogue.DGBUDGPREVN4;
+            worksheet.Cell(i + 2, 51).Value = dialogue.DGCOMMENTAIRES;
+            worksheet.Cell(i + 2, 52).Value = dialogue.DGANNEE;
+            worksheet.Cell(i + 2, 53).Value = dialogue.DGSERIEDEDONNEES;
+        }
+
+        using var stream = new MemoryStream();
+        workbook.SaveAs(stream);
+        var content = stream.ToArray();
+
+        await JS.InvokeVoidAsync("BlazorDownloadFile", "dialogues.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", content);
     }
 }

@@ -28,3 +28,9 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999; /* Assurez-vous que l'overlay est juste en dessous du popup */
 }
+
+.inline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

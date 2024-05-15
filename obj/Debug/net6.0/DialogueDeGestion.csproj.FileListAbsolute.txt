@@ -43,3 +43,10 @@ C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\MySql
 C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\obj\Debug\net6.0\DialogueDeGestion.sourcelink.json
+C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\ClosedXML.dll
+C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
+C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\ExcelNumberFormat.dll
+C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\Irony.dll
+C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\System.IO.Packaging.dll
+C:\Users\ac75008612\OneDrive - RECOUV\VsCode\InterfaceBDD\bin\Debug\net6.0\XLParser.dll
