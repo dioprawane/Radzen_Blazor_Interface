@@ -14,6 +14,7 @@
 else
 {
     <div class="edit-form">
+        <!-- Ajout des champs pour l'édition -->
         <div>
             <label>Macro Designation :</label>
             <input @bind="dialogue.DGMACRODESIGNATION" class="form-control" />
@@ -38,8 +39,191 @@ else
             <label>Libellé du marché :</label>
             <input @bind="dialogue.DGLIBELLEDUMARCHE" class="form-control" />
         </div>
-        <!-- Ajoutez d'autres champs selon vos besoins -->
-        <button @onclick="Save" class="btn btn-primary">Sauvegarder</button>
+        <div>
+            <label>Masse budgétaire :</label>
+            <input @bind="dialogue.DGMASSEBUDGETAIRE" class="form-control" />
+        </div>
+        <div>
+            <label>Demande d'achat :</label>
+            <input @bind="dialogue.DGDA" class="form-control" />
+        </div>
+        <div>
+            <label>Axe national 1 :</label>
+            <input @bind="dialogue.DGAXENATIONAL1" class="form-control" />
+        </div>
+        <div>
+            <label>Grand projet :</label>
+            <input @bind="dialogue.DGGRANDPROJET" class="form-control" />
+        </div>
+        <div>
+            <label>Nom projet :</label>
+            <input @bind="dialogue.DGNOMPROJET" class="form-control" />
+        </div>
+        <div>
+            <label>Statut projet G2PI :</label>
+            <input @bind="dialogue.DGSTATUTPROJETG2PI" class="form-control" />
+        </div>
+        <div>
+            <label>Code initiative SDSI :</label>
+            <input @bind="dialogue.DGCODEINITIATIVESDSI" class="form-control" />
+        </div>
+        <div>
+            <label>Objet initiative :</label>
+            <input @bind="dialogue.DGOBJECTINITIATIVE" class="form-control" />
+        </div>
+        <div>
+            <label>Compte budgétaire :</label>
+            <input @bind="dialogue.DGCOMPTESBUDGETAIRES" class="form-control" />
+        </div>
+        <div>
+            <label>Compte comptable :</label>
+            <input @bind="dialogue.DGCOMPTESCOMPTABLES" class="form-control" />
+        </div>
+        <div>
+            <label>Portefeuille :</label>
+            <input @bind="dialogue.DGPORTEFEUILLE" class="form-control" />
+        </div>
+        <div>
+            <label>Sous portefeuille :</label>
+            <input @bind="dialogue.DGSOUSPORTEFEUILLE" class="form-control" />
+        </div>
+        <div>
+            <label>Caractéristique du besoin :</label>
+            <input @bind="dialogue.DGCARACTERISTIQUEDUBESOIN" class="form-control" />
+        </div>
+        <div>
+            <label>Criticité :</label>
+            <input @bind="dialogue.DGCRITICITE" class="form-control" />
+        </div>
+        <div>
+            <label>Budget initial demandé :</label>
+            <input @bind="dialogue.DGBUDGETINITIALDEMANDE" class="form-control" />
+        </div>
+        <div>
+            <label>Budget DG1 demandé :</label>
+            <input @bind="dialogue.DGBUDGETDG1DEMANDE" class="form-control" />
+        </div>
+        <div>
+            <label>Budget DG2 demandé :</label>
+            <input @bind="dialogue.DGBUDGETDG2DEMANDE" class="form-control" />
+        </div>
+        <div>
+            <label>Budget DG3 demandé :</label>
+            <input @bind="dialogue.DGBUDGETDG3DEMANDE" class="form-control" />
+        </div>
+        <div>
+            <label>Budget DG4 demandé :</label>
+            <input @bind="dialogue.DGBUDGETDG4DEMANDE" class="form-control" />
+        </div>
+        <div>
+            <label>Demande report identifié :</label>
+            <input @bind="dialogue.DGDEMANDEDEREPORTIDENTIFIE" class="form-control" />
+        </div>
+        <div>
+            <label>Plan budg BI janvier :</label>
+            <input @bind="dialogue.DGPLANBUDGBIJANVIER" class="form-control" />
+        </div>
+        <div>
+            <label>Plan budg BR1 juillet :</label>
+            <input @bind="dialogue.DGPLANBUDGBR1JUILLET" class="form-control" />
+        </div>
+        <div>
+            <label>Plan budg BR2 novembre :</label>
+            <input @bind="dialogue.DGPLANBUDGBR2NOVEMBRE" class="form-control" />
+        </div>
+        <div>
+            <label>Numéro AB :</label>
+            <input @bind="dialogue.DGNUMEROAB" class="form-control" />
+        </div>
+        <div>
+            <label>Numéro DB :</label>
+            <input @bind="dialogue.DGNUMERODB" class="form-control" />
+        </div>
+        <div>
+            <label>BI autorisé :</label>
+            <input @bind="dialogue.DGBIAUTORISE" class="form-control" />
+        </div>
+        <div>
+            <label>BR1 autorisé :</label>
+            <input @bind="dialogue.DGBR1AUTORISE" class="form-control" />
+        </div>
+        <div>
+            <label>BR2 autorisé :</label>
+            <input @bind="dialogue.DGBR2AUTORISE" class="form-control" />
+        </div>
+        <div>
+            <label>N° commande :</label>
+            <input @bind="dialogue.DGNCOMMANDE" class="form-control" />
+        </div>
+        <div>
+            <label>Date de Début :</label>
+            <input @bind="dialogue.DGDATEDEDEBUT" type="date" class="form-control" />
+        </div>
+        <div>
+            <label>Date de Fin :</label>
+            <input @bind="dialogue.DGDATEDEFIN" type="date" class="form-control" />
+        </div>
+        <div>
+            <label>Montant Commandé :</label>
+            <input @bind="dialogue.DGMONTANTCOMMANDE" class="form-control" />
+        </div>
+        <div>
+            <label>N° engagement :</label>
+            <input @bind="dialogue.DGNENGAGEMENT" class="form-control" />
+        </div>
+        <div>
+            <label>Montant engagé :</label>
+            <input @bind="dialogue.DGMONTANTENGAGE" class="form-control" />
+        </div>
+        <div>
+            <label>Réalisé :</label>
+            <input @bind="dialogue.DGREALISE" class="form-control" />
+        </div>
+        <div>
+            <label>GA486 année N+1 :</label>
+            <input @bind="dialogue.DGGA486ANNEEN1" class="form-control" />
+        </div>
+        <div>
+            <label>GA486 année N+2 :</label>
+            <input @bind="dialogue.DGGA486ANNEEN2" class="form-control" />
+        </div>
+        <div>
+            <label>GA486 année N+3 :</label>
+            <input @bind="dialogue.DGGA486ANNEEN3" class="form-control" />
+        </div>
+        <div>
+            <label>GA486 année N+4 :</label>
+            <input @bind="dialogue.DGGA486ANNEEN4" class="form-control" />
+        </div>
+        <div>
+            <label>Budg prev N+1 :</label>
+            <input @bind="dialogue.DGBUDGPREVN1" class="form-control" />
+        </div>
+        <div>
+            <label>Budg prev N+2 :</label>
+            <input @bind="dialogue.DGBUDGPREVN2" class="form-control" />
+        </div>
+        <div>
+            <label>Budg prev N+3 :</label>
+            <input @bind="dialogue.DGBUDGPREVN3" class="form-control" />
+        </div>
+        <div>
+            <label>Budg prev N+4 :</label>
+            <input @bind="dialogue.DGBUDGPREVN4" class="form-control" />
+        </div>
+        <div>
+            <label>Commentaires :</label>
+            <input @bind="dialogue.DGCOMMENTAIRES" class="form-control" />
+        </div>
+        <div>
+            <label>Année :</label>
+            <input @bind="dialogue.DGANNEE" class="form-control" />
+        </div>
+        <div>
+            <label>Série de données :</label>
+            <input @bind="dialogue.DGSERIEDEDONNEES" class="form-control" />
+        </div>
+        <button @onclick="SaveAsNewDialogue" class="btn btn-primary">Sauvegarder</button>
         <button @onclick="Cancel" class="btn btn-secondary">Annuler</button>
     </div>
 }
@@ -58,26 +242,80 @@ else
         }
     }
 
-    private async Task Save()
+    private async Task SaveAsNewDialogue()
     {
         if (dialogue != null)
         {
-            var success = await DataService.AddUpdatedDialogueAsync(
-                dialogue.DCODE, 
-                dialogue.DGMACRODESIGNATION, 
-                dialogue.DGNATUREDUBESOIN, 
-                dialogue.DGCADREDACHAT, 
-                dialogue.DGFOURNISSEUR, 
-                dialogue.DGNTIERS, 
-                dialogue.DGLIBELLEDUMARCHE);
+            var newDialogue = new Dialogue
+            {
+                DCODE = await DataService.GetNewDialogueCodeAsync(),
+                DGMACRODESIGNATION = dialogue.DGMACRODESIGNATION,
+                DGNATUREDUBESOIN = dialogue.DGNATUREDUBESOIN,
+                DGCADREDACHAT = dialogue.DGCADREDACHAT,
+                DGFOURNISSEUR = dialogue.DGFOURNISSEUR,
+                DGNTIERS = dialogue.DGNTIERS,
+                DGLIBELLEDUMARCHE = dialogue.DGLIBELLEDUMARCHE,
+                DGMASSEBUDGETAIRE = dialogue.DGMASSEBUDGETAIRE,
+                DGDA = dialogue.DGDA,
+                DGAXENATIONAL1 = dialogue.DGAXENATIONAL1,
+                DGGRANDPROJET = dialogue.DGGRANDPROJET,
+                DGNOMPROJET = dialogue.DGNOMPROJET,
+                DGSTATUTPROJETG2PI = dialogue.DGSTATUTPROJETG2PI,
+                DGCODEINITIATIVESDSI = dialogue.DGCODEINITIATIVESDSI,
+                DGOBJECTINITIATIVE = dialogue.DGOBJECTINITIATIVE,
+                DGCOMPTESBUDGETAIRES = dialogue.DGCOMPTESBUDGETAIRES,
+                DGCOMPTESCOMPTABLES = dialogue.DGCOMPTESCOMPTABLES,
+                DGPORTEFEUILLE = dialogue.DGPORTEFEUILLE,
+                DGSOUSPORTEFEUILLE = dialogue.DGSOUSPORTEFEUILLE,
+                DGCARACTERISTIQUEDUBESOIN = dialogue.DGCARACTERISTIQUEDUBESOIN,
+                DGCRITICITE = dialogue.DGCRITICITE,
+                DGBUDGETINITIALDEMANDE = dialogue.DGBUDGETINITIALDEMANDE,
+                DGBUDGETDG1DEMANDE = dialogue.DGBUDGETDG1DEMANDE,
+                DGBUDGETDG2DEMANDE = dialogue.DGBUDGETDG2DEMANDE,
+                DGBUDGETDG3DEMANDE = dialogue.DGBUDGETDG3DEMANDE,
+                DGBUDGETDG4DEMANDE = dialogue.DGBUDGETDG4DEMANDE,
+                DGDEMANDEDEREPORTIDENTIFIE = dialogue.DGDEMANDEDEREPORTIDENTIFIE,
+                DGPLANBUDGBIJANVIER = dialogue.DGPLANBUDGBIJANVIER,
+                DGPLANBUDGBR1JUILLET = dialogue.DGPLANBUDGBR1JUILLET,
+                DGPLANBUDGBR2NOVEMBRE = dialogue.DGPLANBUDGBR2NOVEMBRE,
+                DGNUMEROAB = dialogue.DGNUMEROAB,
+                DGNUMERODB = dialogue.DGNUMERODB,
+                DGBIAUTORISE = dialogue.DGBIAUTORISE,
+                DGBR1AUTORISE = dialogue.DGBR1AUTORISE,
+                DGBR2AUTORISE = dialogue.DGBR2AUTORISE,
+                DGNCOMMANDE = dialogue.DGNCOMMANDE,
+                DGDATEDEDEBUT = dialogue.DGDATEDEDEBUT,
+                DGDATEDEFIN = dialogue.DGDATEDEFIN,
+                DGMONTANTCOMMANDE = dialogue.DGMONTANTCOMMANDE,
+                DGNENGAGEMENT = dialogue.DGNENGAGEMENT,
+                DGMONTANTENGAGE = dialogue.DGMONTANTENGAGE,
+                DGREALISE = dialogue.DGREALISE,
+                DGGA486ANNEEN1 = dialogue.DGGA486ANNEEN1,
+                DGGA486ANNEEN2 = dialogue.DGGA486ANNEEN2,
+                DGGA486ANNEEN3 = dialogue.DGGA486ANNEEN3,
+                DGGA486ANNEEN4 = dialogue.DGGA486ANNEEN4,
+                DGBUDGPREVN1 = dialogue.DGBUDGPREVN1,
+                DGBUDGPREVN2 = dialogue.DGBUDGPREVN2,
+                DGBUDGPREVN3 = dialogue.DGBUDGPREVN3,
+                DGBUDGPREVN4 = dialogue.DGBUDGPREVN4,
+                DGCOMMENTAIRES = dialogue.DGCOMMENTAIRES,
+                DGANNEE = dialogue.DGANNEE,
+                DGSERIEDEDONNEES = dialogue.DGSERIEDEDONNEES
+            };
 
-            if (success)
+            // Détacher l'ancienne instance pour éviter le suivi multiple de la même clé
+            DataService.DetachEntity(dialogue);
+
+            // Ajouter la nouvelle ligne modifiée à la base de données
+            var successNew = await DataService.AddDialogueAsync(newDialogue);
+
+            if (successNew)
             {
                 NavigationManager.NavigateTo("/editnew");
             }
             else
             {
-                // Affichez un message d'erreur ou gérez l'échec de la mise à jour comme nécessaire
+                // Affichez un message d'erreur ou gérez l'échec de l'ajout comme nécessaire
             }
         }
     }

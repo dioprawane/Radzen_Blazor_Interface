@@ -75,71 +75,82 @@ public class DataService
         }
     }
 
-    public async Task<bool> UpdateDialogueAsyncV2(int dcode, string macroDesignation, string natureDuBesoin, string cadreDAchat, string fournisseur, int nTiers, string libelleDuMarche)
+    public async Task<bool> UpdateDialogueAsync2(Dialogue updatedDialogue)
     {
         try
         {
-            var existingDialogue = await _context.Dialogue.FirstOrDefaultAsync(d => d.DCODE == dcode);
+            // Check if the dialogue exists
+            var existingDialogue = await _context.Dialogue.FirstOrDefaultAsync(d => d.DCODE == updatedDialogue.DCODE);
 
             if (existingDialogue == null)
             {
-                _logger.LogWarning($"Dialogue with code {dcode} not found.");
+                _logger.LogWarning($"Dialogue with code {updatedDialogue.DCODE} not found.");
                 return false;
             }
 
-            existingDialogue.DGMACRODESIGNATION = macroDesignation;
-            existingDialogue.DGNATUREDUBESOIN = natureDuBesoin;
-            existingDialogue.DGCADREDACHAT = cadreDAchat;
-            existingDialogue.DGFOURNISSEUR = fournisseur;
-            existingDialogue.DGNTIERS = nTiers;
-            existingDialogue.DGLIBELLEDUMARCHE = libelleDuMarche;
-            // Update other relevant properties similarly
+            // Update the properties only if they are modified
+            existingDialogue.DGMACRODESIGNATION = !string.IsNullOrEmpty(updatedDialogue.DGMACRODESIGNATION) ? updatedDialogue.DGMACRODESIGNATION : existingDialogue.DGMACRODESIGNATION;
+            existingDialogue.DGNATUREDUBESOIN = !string.IsNullOrEmpty(updatedDialogue.DGNATUREDUBESOIN) ? updatedDialogue.DGNATUREDUBESOIN : existingDialogue.DGNATUREDUBESOIN;
+            existingDialogue.DGCADREDACHAT = !string.IsNullOrEmpty(updatedDialogue.DGCADREDACHAT) ? updatedDialogue.DGCADREDACHAT : existingDialogue.DGCADREDACHAT;
+            existingDialogue.DGFOURNISSEUR = !string.IsNullOrEmpty(updatedDialogue.DGFOURNISSEUR) ? updatedDialogue.DGFOURNISSEUR : existingDialogue.DGFOURNISSEUR;
+            existingDialogue.DGNTIERS = updatedDialogue.DGNTIERS != 0 ? updatedDialogue.DGNTIERS : existingDialogue.DGNTIERS;
+            existingDialogue.DGLIBELLEDUMARCHE = !string.IsNullOrEmpty(updatedDialogue.DGLIBELLEDUMARCHE) ? updatedDialogue.DGLIBELLEDUMARCHE : existingDialogue.DGLIBELLEDUMARCHE;
+            existingDialogue.DGMASSEBUDGETAIRE = !string.IsNullOrEmpty(updatedDialogue.DGMASSEBUDGETAIRE) ? updatedDialogue.DGMASSEBUDGETAIRE : existingDialogue.DGMASSEBUDGETAIRE;
+            existingDialogue.DGDA = !string.IsNullOrEmpty(updatedDialogue.DGDA) ? updatedDialogue.DGDA : existingDialogue.DGDA;
+            existingDialogue.DGAXENATIONAL1 = !string.IsNullOrEmpty(updatedDialogue.DGAXENATIONAL1) ? updatedDialogue.DGAXENATIONAL1 : existingDialogue.DGAXENATIONAL1;
+            existingDialogue.DGGRANDPROJET = !string.IsNullOrEmpty(updatedDialogue.DGGRANDPROJET) ? updatedDialogue.DGGRANDPROJET : existingDialogue.DGGRANDPROJET;
+            existingDialogue.DGNOMPROJET = !string.IsNullOrEmpty(updatedDialogue.DGNOMPROJET) ? updatedDialogue.DGNOMPROJET : existingDialogue.DGNOMPROJET;
+            existingDialogue.DGSTATUTPROJETG2PI = !string.IsNullOrEmpty(updatedDialogue.DGSTATUTPROJETG2PI) ? updatedDialogue.DGSTATUTPROJETG2PI : existingDialogue.DGSTATUTPROJETG2PI;
+            existingDialogue.DGCODEINITIATIVESDSI = !string.IsNullOrEmpty(updatedDialogue.DGCODEINITIATIVESDSI) ? updatedDialogue.DGCODEINITIATIVESDSI : existingDialogue.DGCODEINITIATIVESDSI;
+            existingDialogue.DGOBJECTINITIATIVE = !string.IsNullOrEmpty(updatedDialogue.DGOBJECTINITIATIVE) ? updatedDialogue.DGOBJECTINITIATIVE : existingDialogue.DGOBJECTINITIATIVE;
+            existingDialogue.DGCOMPTESBUDGETAIRES = updatedDialogue.DGCOMPTESBUDGETAIRES != 0 ? updatedDialogue.DGCOMPTESBUDGETAIRES : existingDialogue.DGCOMPTESBUDGETAIRES;
+            existingDialogue.DGCOMPTESCOMPTABLES = updatedDialogue.DGCOMPTESCOMPTABLES != 0 ? updatedDialogue.DGCOMPTESCOMPTABLES : existingDialogue.DGCOMPTESCOMPTABLES;
+            existingDialogue.DGPORTEFEUILLE = !string.IsNullOrEmpty(updatedDialogue.DGPORTEFEUILLE) ? updatedDialogue.DGPORTEFEUILLE : existingDialogue.DGPORTEFEUILLE;
+            existingDialogue.DGSOUSPORTEFEUILLE = !string.IsNullOrEmpty(updatedDialogue.DGSOUSPORTEFEUILLE) ? updatedDialogue.DGSOUSPORTEFEUILLE : existingDialogue.DGSOUSPORTEFEUILLE;
+            existingDialogue.DGCARACTERISTIQUEDUBESOIN = !string.IsNullOrEmpty(updatedDialogue.DGCARACTERISTIQUEDUBESOIN) ? updatedDialogue.DGCARACTERISTIQUEDUBESOIN : existingDialogue.DGCARACTERISTIQUEDUBESOIN;
+            existingDialogue.DGCRITICITE = !string.IsNullOrEmpty(updatedDialogue.DGCRITICITE) ? updatedDialogue.DGCRITICITE : existingDialogue.DGCRITICITE;
+            existingDialogue.DGBUDGETINITIALDEMANDE = updatedDialogue.DGBUDGETINITIALDEMANDE != 0 ? updatedDialogue.DGBUDGETINITIALDEMANDE : existingDialogue.DGBUDGETINITIALDEMANDE;
+            existingDialogue.DGBUDGETDG1DEMANDE = updatedDialogue.DGBUDGETDG1DEMANDE != 0 ? updatedDialogue.DGBUDGETDG1DEMANDE : existingDialogue.DGBUDGETDG1DEMANDE;
+            existingDialogue.DGBUDGETDG2DEMANDE = updatedDialogue.DGBUDGETDG2DEMANDE != 0 ? updatedDialogue.DGBUDGETDG2DEMANDE : existingDialogue.DGBUDGETDG2DEMANDE;
+            existingDialogue.DGBUDGETDG3DEMANDE = updatedDialogue.DGBUDGETDG3DEMANDE != 0 ? updatedDialogue.DGBUDGETDG3DEMANDE : existingDialogue.DGBUDGETDG3DEMANDE;
+            existingDialogue.DGBUDGETDG4DEMANDE = updatedDialogue.DGBUDGETDG4DEMANDE != 0 ? updatedDialogue.DGBUDGETDG4DEMANDE : existingDialogue.DGBUDGETDG4DEMANDE;
+            existingDialogue.DGDEMANDEDEREPORTIDENTIFIE = !string.IsNullOrEmpty(updatedDialogue.DGDEMANDEDEREPORTIDENTIFIE) ? updatedDialogue.DGDEMANDEDEREPORTIDENTIFIE : existingDialogue.DGDEMANDEDEREPORTIDENTIFIE;
+            existingDialogue.DGPLANBUDGBIJANVIER = updatedDialogue.DGPLANBUDGBIJANVIER != 0 ? updatedDialogue.DGPLANBUDGBIJANVIER : existingDialogue.DGPLANBUDGBIJANVIER;
+            existingDialogue.DGPLANBUDGBR1JUILLET = updatedDialogue.DGPLANBUDGBR1JUILLET != 0 ? updatedDialogue.DGPLANBUDGBR1JUILLET : existingDialogue.DGPLANBUDGBR1JUILLET;
+            existingDialogue.DGPLANBUDGBR2NOVEMBRE = updatedDialogue.DGPLANBUDGBR2NOVEMBRE != 0 ? updatedDialogue.DGPLANBUDGBR2NOVEMBRE : existingDialogue.DGPLANBUDGBR2NOVEMBRE;
+            existingDialogue.DGNUMEROAB = !string.IsNullOrEmpty(updatedDialogue.DGNUMEROAB) ? updatedDialogue.DGNUMEROAB : existingDialogue.DGNUMEROAB;
+            existingDialogue.DGNUMERODB = !string.IsNullOrEmpty(updatedDialogue.DGNUMERODB) ? updatedDialogue.DGNUMERODB : existingDialogue.DGNUMERODB;
+            existingDialogue.DGBIAUTORISE = updatedDialogue.DGBIAUTORISE != 0 ? updatedDialogue.DGBIAUTORISE : existingDialogue.DGBIAUTORISE;
+            existingDialogue.DGBR1AUTORISE = updatedDialogue.DGBR1AUTORISE != 0 ? updatedDialogue.DGBR1AUTORISE : existingDialogue.DGBR1AUTORISE;
+            existingDialogue.DGBR2AUTORISE = updatedDialogue.DGBR2AUTORISE != 0 ? updatedDialogue.DGBR2AUTORISE : existingDialogue.DGBR2AUTORISE;
+            existingDialogue.DGNCOMMANDE = !string.IsNullOrEmpty(updatedDialogue.DGNCOMMANDE) ? updatedDialogue.DGNCOMMANDE : existingDialogue.DGNCOMMANDE;
+            existingDialogue.DGDATEDEDEBUT = updatedDialogue.DGDATEDEDEBUT != DateTime.MinValue ? updatedDialogue.DGDATEDEDEBUT : existingDialogue.DGDATEDEDEBUT;
+            existingDialogue.DGDATEDEFIN = updatedDialogue.DGDATEDEFIN != DateTime.MinValue ? updatedDialogue.DGDATEDEFIN : existingDialogue.DGDATEDEFIN;
+            existingDialogue.DGMONTANTCOMMANDE = updatedDialogue.DGMONTANTCOMMANDE != 0 ? updatedDialogue.DGMONTANTCOMMANDE : existingDialogue.DGMONTANTCOMMANDE;
+            existingDialogue.DGNENGAGEMENT = !string.IsNullOrEmpty(updatedDialogue.DGNENGAGEMENT) ? updatedDialogue.DGNENGAGEMENT : existingDialogue.DGNENGAGEMENT;
+            existingDialogue.DGMONTANTENGAGE = updatedDialogue.DGMONTANTENGAGE != 0 ? updatedDialogue.DGMONTANTENGAGE : existingDialogue.DGMONTANTENGAGE;
+            existingDialogue.DGREALISE = updatedDialogue.DGREALISE != 0 ? updatedDialogue.DGREALISE : existingDialogue.DGREALISE;
+            existingDialogue.DGGA486ANNEEN1 = !string.IsNullOrEmpty(updatedDialogue.DGGA486ANNEEN1) ? updatedDialogue.DGGA486ANNEEN1 : existingDialogue.DGGA486ANNEEN1;
+            existingDialogue.DGGA486ANNEEN2 = !string.IsNullOrEmpty(updatedDialogue.DGGA486ANNEEN2) ? updatedDialogue.DGGA486ANNEEN2 : existingDialogue.DGGA486ANNEEN2;
+            existingDialogue.DGGA486ANNEEN3 = !string.IsNullOrEmpty(updatedDialogue.DGGA486ANNEEN3) ? updatedDialogue.DGGA486ANNEEN3 : existingDialogue.DGGA486ANNEEN3;
+            existingDialogue.DGGA486ANNEEN4 = !string.IsNullOrEmpty(updatedDialogue.DGGA486ANNEEN4) ? updatedDialogue.DGGA486ANNEEN4 : existingDialogue.DGGA486ANNEEN4;
+            existingDialogue.DGBUDGPREVN1 = updatedDialogue.DGBUDGPREVN1 != 0 ? updatedDialogue.DGBUDGPREVN1 : existingDialogue.DGBUDGPREVN1;
+            existingDialogue.DGBUDGPREVN2 = updatedDialogue.DGBUDGPREVN2 != 0 ? updatedDialogue.DGBUDGPREVN2 : existingDialogue.DGBUDGPREVN2;
+            existingDialogue.DGBUDGPREVN3 = updatedDialogue.DGBUDGPREVN3 != 0 ? updatedDialogue.DGBUDGPREVN3 : existingDialogue.DGBUDGPREVN3;
+            existingDialogue.DGBUDGPREVN4 = updatedDialogue.DGBUDGPREVN4 != 0 ? updatedDialogue.DGBUDGPREVN4 : existingDialogue.DGBUDGPREVN4;
+            existingDialogue.DGCOMMENTAIRES = !string.IsNullOrEmpty(updatedDialogue.DGCOMMENTAIRES) ? updatedDialogue.DGCOMMENTAIRES : existingDialogue.DGCOMMENTAIRES;
+            existingDialogue.DGANNEE = updatedDialogue.DGANNEE != 0 ? updatedDialogue.DGANNEE : existingDialogue.DGANNEE;
+            existingDialogue.DGSERIEDEDONNEES = !string.IsNullOrEmpty(updatedDialogue.DGSERIEDEDONNEES) ? updatedDialogue.DGSERIEDEDONNEES : existingDialogue.DGSERIEDEDONNEES;
 
+            // Mark the entity as modified and save changes
             _context.Entry(existingDialogue).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            _logger.LogInformation($"Updated dialogue with code {dcode}.");
+            _logger.LogInformation($"Updated dialogue with code {updatedDialogue.DCODE}.");
             return true;
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error occurred while updating dialogue.");
-            return false;
-        }
-    }
-
-
-    public async Task<bool> AddUpdatedDialogueAsync(int dcode, string macroDesignation, string natureDuBesoin, string cadreDAchat, string fournisseur, int nTiers, string libelleDuMarche)
-    {
-        try
-        {
-            var existingDialogue = await _context.Dialogue.FirstOrDefaultAsync(d => d.DCODE == dcode);
-
-            if (existingDialogue == null)
-            {
-                _logger.LogWarning($"Dialogue with code {dcode} not found.");
-                return false;
-            }
-
-            var newDialogue = new Dialogue
-            {
-                DGMACRODESIGNATION = !string.IsNullOrEmpty(macroDesignation) ? macroDesignation : existingDialogue.DGMACRODESIGNATION,
-                DGNATUREDUBESOIN = !string.IsNullOrEmpty(natureDuBesoin) ? natureDuBesoin : existingDialogue.DGNATUREDUBESOIN,
-                DGCADREDACHAT = !string.IsNullOrEmpty(cadreDAchat) ? cadreDAchat : existingDialogue.DGCADREDACHAT,
-                DGFOURNISSEUR = !string.IsNullOrEmpty(fournisseur) ? fournisseur : existingDialogue.DGFOURNISSEUR,
-                DGNTIERS = nTiers != 0 ? nTiers : existingDialogue.DGNTIERS,
-                DGLIBELLEDUMARCHE = !string.IsNullOrEmpty(libelleDuMarche) ? libelleDuMarche : existingDialogue.DGLIBELLEDUMARCHE,
-                // Copy other properties from existingDialogue if they are not updated
-                // You can add more properties here similarly
-            };
-
-            _context.Dialogue.Add(newDialogue);
-            await _context.SaveChangesAsync();
-            _logger.LogInformation($"Added new dialogue with code {newDialogue.DCODE}.");
-            return true;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error occurred while adding updated dialogue.");
             return false;
         }
     }
@@ -161,19 +172,39 @@ public class DataService
 
     // Inside DataService.cs
 
-    public async Task AddDialogueAsync(Dialogue newDialogue)
+    public async Task<int> GetNewDialogueCodeAsync()
     {
         try
         {
-            _context.Dialogue.Add(newDialogue);
-            await _context.SaveChangesAsync();
-            _logger.LogInformation("New dialogue added successfully with ID: {Id}", newDialogue.DCODE);
+            var maxCode = await _context.Dialogue.MaxAsync(d => d.DCODE);
+            return maxCode + 1;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error adding new dialogue");
-            throw; // Optionally re-throw to handle the error outside this method
+            _logger.LogError(ex, "Error occurred while generating new dialogue code.");
+            return -1; // Handle appropriately in the caller
         }
+    }
+
+    public async Task<bool> AddDialogueAsync(Dialogue dialogue)
+    {
+        try
+        {
+            _context.Dialogue.Add(dialogue);
+            await _context.SaveChangesAsync();
+            _logger.LogInformation($"Added new dialogue with code {dialogue.DCODE}.");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error occurred while adding new dialogue.");
+            return false;
+        }
+    }
+
+    public void DetachEntity(Dialogue dialogue)
+    {
+        _context.Entry(dialogue).State = EntityState.Detached;
     }
 
 
