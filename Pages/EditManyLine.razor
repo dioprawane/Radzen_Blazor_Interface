@@ -28,8 +28,19 @@
 </div>
 <button @onclick="PromptUpdateDialogues" class="btn btn-primary">Mettre à jour</button>
 
-<label for="filter">Filtrer par série de données :</label>
-<input @bind="filterText" @bind:event="oninput" id="filter" class="form-control" placeholder="Entrez une série de données" />
+<div class="form-group" style="padding-top: 15px;">
+    <label for="filter">Filtrer par série de données :</label>
+    <input @bind="filterText" @bind:event="oninput" id="filter" class="form-control" placeholder="Entrez une série de données" />
+</div>
+
+<div class="form-group" style="padding-top: 15px;">
+    <label for="filterMontant">Filtrer par montant :</label>
+    <input type="text" id="filterMontant" @bind="filterMontant" class="form-control" placeholder="Entrez un montant" />
+</div>
+<div class="form-group" style="padding-top: 15px;">
+    <label for="filterNTiers">Filtrer par N° Tiers :</label>
+    <input type="text" id="filterNTiers" @bind="filterNTiers" class="form-control" placeholder="Entrez un N° Tiers" />
+</div>
 
 @if (dialogues == null)
 {
@@ -168,6 +179,8 @@ else
     private List<Dialogue> dialogues;
     private List<Dialogue> FilteredDialogues => dialogues?.Where(d => FilterDialogue(d)).ToList() ?? new List<Dialogue>();
     private string filterText = "";
+    private string filterMontant = "";
+    private string filterNTiers = "";
     private string selectedField;
     private string currentValue;
     private string newValue;
@@ -186,7 +199,12 @@ else
 
     private bool FilterDialogue(Dialogue dialogue)
     {
-        return string.IsNullOrEmpty(filterText) || dialogue.DGSERIEDEDONNEES.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+        //return string.IsNullOrEmpty(filterText) || dialogue.DGSERIEDEDONNEES.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+        bool matchesFilterText = string.IsNullOrEmpty(filterText) || dialogue.DGSERIEDEDONNEES.Contains(filterText, StringComparison.OrdinalIgnoreCase);
+        bool matchesFilterMontant = string.IsNullOrEmpty(filterMontant) || (decimal.TryParse(filterMontant, out var montant) && dialogue.DGMONTANTCOMMANDE == montant);
+        bool matchesFilterNTiers = string.IsNullOrEmpty(filterNTiers) || dialogue.DGNTIERS.ToString().Contains(filterNTiers, StringComparison.OrdinalIgnoreCase);
+
+        return matchesFilterText && matchesFilterMontant && matchesFilterNTiers;
     }
 
     private async Task PromptUpdateDialogues()
@@ -211,6 +229,11 @@ else
                 // Rafraîchir les données après mise à jour
                 dialogues = await DataService.GetAllDialoguesAsync();
                 await JS.InvokeVoidAsync("showAlert", "Mise à jour effectuée avec succès.");
+
+                // Réinitialiser les champs du formulaire
+                selectedField = null;
+                currentValue = null;
+                newValue = null;
             }
             else
             {
