@@ -514,7 +514,7 @@
           }
         }
       },
-      "Radzen.Blazor/4.31.4": {
+      "Radzen.Blazor/4.31.7": {
         "type": "package",
         "dependencies": {
           "DartSassBuilder": "1.0.0",
@@ -2477,10 +2477,10 @@
         "pomelo.entityframeworkcore.mysql.nuspec"
       ]
     },
-    "Radzen.Blazor/4.31.4": {
-      "sha512": "nk6rEE+L6Y7b21uj+HSyyzPUJDdeJ3aJ4XASl6Own0qyvzSi5irFRiQGrZtUCIxLQSl6Azv19zKr8dALnctYxw==",
+    "Radzen.Blazor/4.31.7": {
+      "sha512": "hOPQZMLftZ8rmpzZ8VHE5JYOVwgCxzl3BiSOk954WtlQaRts1YT+ZgSw+8yA+p4AvZePhvKIlXGW3x0lXMw16A==",
       "type": "package",
-      "path": "radzen.blazor/4.31.4",
+      "path": "radzen.blazor/4.31.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2501,7 +2501,7 @@
         "lib/net8.0/Radzen.Blazor.xml",
         "lib/netstandard2.1/Radzen.Blazor.dll",
         "lib/netstandard2.1/Radzen.Blazor.xml",
-        "radzen.blazor.4.31.4.nupkg.sha512",
+        "radzen.blazor.4.31.7.nupkg.sha512",
         "radzen.blazor.nuspec",
         "staticwebassets/Radzen.Blazor.js",
         "staticwebassets/css/dark-base.css",

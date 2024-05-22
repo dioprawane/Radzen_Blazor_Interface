@@ -11,7 +11,7 @@
           "ClosedXML": "0.102.2",
           "Microsoft.EntityFrameworkCore": "6.0.30",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.3",
-          "Radzen.Blazor": "4.31.4"
+          "Radzen.Blazor": "4.31.7"
         },
         "runtime": {
           "DialogueDeGestion.dll": {}
@@ -301,7 +301,7 @@
           }
         }
       },
-      "Radzen.Blazor/4.31.4": {
+      "Radzen.Blazor/4.31.7": {
         "dependencies": {
           "DartSassBuilder": "1.0.0",
           "Microsoft.AspNetCore.Components": "6.0.25",
@@ -310,8 +310,8 @@
         },
         "runtime": {
           "lib/net6.0/Radzen.Blazor.dll": {
-            "assemblyVersion": "4.31.4.0",
-            "fileVersion": "4.31.4.0"
+            "assemblyVersion": "4.31.7.0",
+            "fileVersion": "4.31.7.0"
           }
         }
       },
@@ -1194,12 +1194,12 @@
       "path": "pomelo.entityframeworkcore.mysql/6.0.3",
       "hashPath": "pomelo.entityframeworkcore.mysql.6.0.3.nupkg.sha512"
     },
-    "Radzen.Blazor/4.31.4": {
+    "Radzen.Blazor/4.31.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nk6rEE+L6Y7b21uj+HSyyzPUJDdeJ3aJ4XASl6Own0qyvzSi5irFRiQGrZtUCIxLQSl6Azv19zKr8dALnctYxw==",
-      "path": "radzen.blazor/4.31.4",
-      "hashPath": "radzen.blazor.4.31.4.nupkg.sha512"
+      "sha512": "sha512-hOPQZMLftZ8rmpzZ8VHE5JYOVwgCxzl3BiSOk954WtlQaRts1YT+ZgSw+8yA+p4AvZePhvKIlXGW3x0lXMw16A==",
+      "path": "radzen.blazor/4.31.7",
+      "hashPath": "radzen.blazor.4.31.7.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
       "type": "package",
