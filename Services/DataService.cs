@@ -207,5 +207,62 @@ public class DataService
         _context.Entry(dialogue).State = EntityState.Detached;
     }
 
+    public async Task<bool> UpdateDialoguesManyAsync(string field, string currentValue, string newValue)
+    {
+        try
+        {
+            var dialoguesToUpdate = _context.Dialogue.AsQueryable();
+
+            switch (field)
+            {
+                case "DGMONTANTCOMMANDE":
+                    if (decimal.TryParse(currentValue, out decimal currentDecimal) && decimal.TryParse(newValue, out decimal newDecimal))
+                    {
+                        dialoguesToUpdate = dialoguesToUpdate.Where(d => d.DGMONTANTCOMMANDE == currentDecimal);
+                        foreach (var dialogue in dialoguesToUpdate)
+                        {
+                            dialogue.DGMONTANTCOMMANDE = newDecimal;
+                        }
+                    }
+                    break;
+                case "DGREALISE":
+                    if (decimal.TryParse(currentValue, out decimal currentRealise) && decimal.TryParse(newValue, out decimal newRealise))
+                    {
+                        dialoguesToUpdate = dialoguesToUpdate.Where(d => d.DGREALISE == currentRealise);
+                        foreach (var dialogue in dialoguesToUpdate)
+                        {
+                            dialogue.DGREALISE = newRealise;
+                        }
+                    }
+                    break;
+                case "DGNTIERS":
+                    if (int.TryParse(currentValue, out int currentInt) && int.TryParse(newValue, out int newInt))
+                    {
+                        dialoguesToUpdate = dialoguesToUpdate.Where(d => d.DGNTIERS == currentInt);
+                        foreach (var dialogue in dialoguesToUpdate)
+                        {
+                            dialogue.DGNTIERS = newInt;
+                        }
+                    }
+                    break;
+                // Ajoutez des cases pour d'autres champs si nécessaire
+            }
+
+
+            await _context.SaveChangesAsync();
+            _logger.LogInformation($"Updated {dialoguesToUpdate.Count()} dialogues for field {field}.");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error occurred while updating dialogues.");
+            return false;
+        }
+    }
+
+
+
+
+
 
 }

@@ -37,7 +37,7 @@
 
     <script src="_framework/blazor.server.js"></script>
     <script src="_content/Radzen.Blazor/Radzen.Blazor.js?v=@(typeof(Radzen.Colors).Assembly.GetName().Version)"></script>
-    <script src="js/Radzen.Blazor.custom.js"></script> <!-- Inclusion du fichier JS personnalisé -->
+    <!-- <script src="js/Radzen.Blazor.custom.js"</script> <!-- Inclusion du fichier JS personnalisé -->
     <script>
         window.BlazorDownloadFile = (filename, contentType, content) => {
             const blob = new Blob([content], { type: contentType });
@@ -50,6 +50,15 @@
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
         };
+    </script>
+    <script>
+        function confirmUpdate() {
+            return confirm("Voulez-vous vraiment mettre à jour les dialogues ?");
+        }
+
+        function showAlert(message) {
+            alert(message);
+        }
     </script>
 </body>
 </html>
