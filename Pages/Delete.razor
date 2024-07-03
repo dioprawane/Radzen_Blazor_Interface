@@ -218,11 +218,11 @@ else
     private void ConfirmDelete(Dialogue dialogue)
     {
         confirmationDialog.ConfirmDelete($"Êtes-vous sûre de bien vouloir supprimer cette ligne avec le code : {dialogue.DCODE} de la table 'DIALOGUE' dans la base de données ?",
-            EventCallback.Factory.Create<bool>(this, (confirm) =>
+            EventCallback.Factory.Create<bool>(this, async(confirm) =>
             {
                 if (confirm)
                 {
-                    DeleteDialogue(dialogue);
+                    await DeleteDialogue(dialogue);
                 }
             }));
     }
